@@ -16,5 +16,21 @@ namespace midterm_project
         {
             InitializeComponent();
         }
+
+        private void FormMain_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Application.ExitThread();
+        }
+
+        private void FormMain_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnBackToLogin_Click(object sender, EventArgs e)
+        {
+            Hide();
+            GlobalVar.form1.Show();
+        }
     }
 }
