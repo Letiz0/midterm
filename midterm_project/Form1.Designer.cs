@@ -72,7 +72,7 @@ namespace midterm_project
             // btnLogin
             // 
             this.btnLogin.Font = new System.Drawing.Font("新宋体", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnLogin.Location = new System.Drawing.Point(242, 344);
+            this.btnLogin.Location = new System.Drawing.Point(220, 479);
             this.btnLogin.Name = "btnLogin";
             this.btnLogin.Size = new System.Drawing.Size(142, 61);
             this.btnLogin.TabIndex = 0;
@@ -83,7 +83,7 @@ namespace midterm_project
             // btnSignup
             // 
             this.btnSignup.Font = new System.Drawing.Font("新宋体", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSignup.Location = new System.Drawing.Point(74, 344);
+            this.btnSignup.Location = new System.Drawing.Point(52, 479);
             this.btnSignup.Name = "btnSignup";
             this.btnSignup.Size = new System.Drawing.Size(142, 61);
             this.btnSignup.TabIndex = 1;
@@ -102,7 +102,7 @@ namespace midterm_project
             // btnForget
             // 
             this.btnForget.Font = new System.Drawing.Font("新宋体", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnForget.Location = new System.Drawing.Point(287, 416);
+            this.btnForget.Location = new System.Drawing.Point(265, 551);
             this.btnForget.Name = "btnForget";
             this.btnForget.Size = new System.Drawing.Size(97, 39);
             this.btnForget.TabIndex = 3;
@@ -113,7 +113,7 @@ namespace midterm_project
             // txtPW
             // 
             this.txtPW.Font = new System.Drawing.Font("宋体", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtPW.Location = new System.Drawing.Point(96, 146);
+            this.txtPW.Location = new System.Drawing.Point(96, 267);
             this.txtPW.Name = "txtPW";
             this.txtPW.PasswordChar = '*';
             this.txtPW.Size = new System.Drawing.Size(223, 31);
@@ -131,7 +131,7 @@ namespace midterm_project
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(25, 151);
+            this.label2.Location = new System.Drawing.Point(25, 272);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(54, 21);
             this.label2.TabIndex = 6;
@@ -140,7 +140,7 @@ namespace midterm_project
             // txtSignPW
             // 
             this.txtSignPW.Font = new System.Drawing.Font("宋体", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSignPW.Location = new System.Drawing.Point(111, 88);
+            this.txtSignPW.Location = new System.Drawing.Point(111, 101);
             this.txtSignPW.Name = "txtSignPW";
             this.txtSignPW.PasswordChar = '*';
             this.txtSignPW.Size = new System.Drawing.Size(223, 31);
@@ -149,7 +149,7 @@ namespace midterm_project
             // txtSignCheckPW
             // 
             this.txtSignCheckPW.Font = new System.Drawing.Font("宋体", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSignCheckPW.Location = new System.Drawing.Point(111, 141);
+            this.txtSignCheckPW.Location = new System.Drawing.Point(111, 167);
             this.txtSignCheckPW.Name = "txtSignCheckPW";
             this.txtSignCheckPW.PasswordChar = '*';
             this.txtSignCheckPW.Size = new System.Drawing.Size(223, 31);
@@ -158,7 +158,7 @@ namespace midterm_project
             // txtSignLocation
             // 
             this.txtSignLocation.Font = new System.Drawing.Font("宋体", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSignLocation.Location = new System.Drawing.Point(111, 247);
+            this.txtSignLocation.Location = new System.Drawing.Point(111, 299);
             this.txtSignLocation.Name = "txtSignLocation";
             this.txtSignLocation.Size = new System.Drawing.Size(223, 31);
             this.txtSignLocation.TabIndex = 9;
@@ -173,21 +173,21 @@ namespace midterm_project
             // 
             // groupBoxLogin
             // 
-            this.groupBoxLogin.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
+            this.groupBoxLogin.BackColor = System.Drawing.Color.Transparent;
             this.groupBoxLogin.Controls.Add(this.txtPW);
             this.groupBoxLogin.Controls.Add(this.txtEmail);
             this.groupBoxLogin.Controls.Add(this.label1);
             this.groupBoxLogin.Controls.Add(this.label2);
-            this.groupBoxLogin.Location = new System.Drawing.Point(50, 46);
+            this.groupBoxLogin.Location = new System.Drawing.Point(23, 63);
             this.groupBoxLogin.Name = "groupBoxLogin";
-            this.groupBoxLogin.Size = new System.Drawing.Size(350, 237);
+            this.groupBoxLogin.Size = new System.Drawing.Size(350, 357);
             this.groupBoxLogin.TabIndex = 11;
             this.groupBoxLogin.TabStop = false;
             this.groupBoxLogin.Text = "會員登入";
             // 
             // groupBoxSignup
             // 
-            this.groupBoxSignup.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
+            this.groupBoxSignup.BackColor = System.Drawing.Color.Transparent;
             this.groupBoxSignup.Controls.Add(this.label12);
             this.groupBoxSignup.Controls.Add(this.txtSignPhone);
             this.groupBoxSignup.Controls.Add(this.txtVerify);
@@ -200,9 +200,9 @@ namespace midterm_project
             this.groupBoxSignup.Controls.Add(this.txtSignLocation);
             this.groupBoxSignup.Controls.Add(this.txtSignPW);
             this.groupBoxSignup.Controls.Add(this.txtSignCheckPW);
-            this.groupBoxSignup.Location = new System.Drawing.Point(50, 12);
+            this.groupBoxSignup.Location = new System.Drawing.Point(23, 29);
             this.groupBoxSignup.Name = "groupBoxSignup";
-            this.groupBoxSignup.Size = new System.Drawing.Size(350, 355);
+            this.groupBoxSignup.Size = new System.Drawing.Size(350, 417);
             this.groupBoxSignup.TabIndex = 7;
             this.groupBoxSignup.TabStop = false;
             this.groupBoxSignup.Text = "帳號註冊";
@@ -211,7 +211,7 @@ namespace midterm_project
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(11, 197);
+            this.label12.Location = new System.Drawing.Point(11, 238);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(98, 21);
             this.label12.TabIndex = 18;
@@ -220,7 +220,7 @@ namespace midterm_project
             // txtSignPhone
             // 
             this.txtSignPhone.Font = new System.Drawing.Font("宋体", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSignPhone.Location = new System.Drawing.Point(111, 194);
+            this.txtSignPhone.Location = new System.Drawing.Point(111, 233);
             this.txtSignPhone.MaxLength = 10;
             this.txtSignPhone.Name = "txtSignPhone";
             this.txtSignPhone.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
@@ -230,7 +230,7 @@ namespace midterm_project
             // txtVerify
             // 
             this.txtVerify.Font = new System.Drawing.Font("宋体", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtVerify.Location = new System.Drawing.Point(111, 300);
+            this.txtVerify.Location = new System.Drawing.Point(111, 365);
             this.txtVerify.Name = "txtVerify";
             this.txtVerify.Size = new System.Drawing.Size(98, 31);
             this.txtVerify.TabIndex = 16;
@@ -238,7 +238,7 @@ namespace midterm_project
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(33, 305);
+            this.label7.Location = new System.Drawing.Point(33, 370);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(76, 21);
             this.label7.TabIndex = 15;
@@ -247,7 +247,7 @@ namespace midterm_project
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(11, 252);
+            this.label6.Location = new System.Drawing.Point(11, 304);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(98, 21);
             this.label6.TabIndex = 14;
@@ -256,7 +256,7 @@ namespace midterm_project
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(11, 146);
+            this.label5.Location = new System.Drawing.Point(11, 172);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(98, 21);
             this.label5.TabIndex = 13;
@@ -265,7 +265,7 @@ namespace midterm_project
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(55, 93);
+            this.label4.Location = new System.Drawing.Point(55, 106);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(54, 21);
             this.label4.TabIndex = 12;
@@ -283,7 +283,7 @@ namespace midterm_project
             // btnSendEmail
             // 
             this.btnSendEmail.Font = new System.Drawing.Font("新宋体", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSendEmail.Location = new System.Drawing.Point(74, 394);
+            this.btnSendEmail.Location = new System.Drawing.Point(52, 529);
             this.btnSendEmail.Name = "btnSendEmail";
             this.btnSendEmail.Size = new System.Drawing.Size(142, 61);
             this.btnSendEmail.TabIndex = 17;
@@ -295,7 +295,7 @@ namespace midterm_project
             // btnConfirmSign
             // 
             this.btnConfirmSign.Font = new System.Drawing.Font("新宋体", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnConfirmSign.Location = new System.Drawing.Point(242, 394);
+            this.btnConfirmSign.Location = new System.Drawing.Point(220, 529);
             this.btnConfirmSign.Name = "btnConfirmSign";
             this.btnConfirmSign.Size = new System.Drawing.Size(142, 61);
             this.btnConfirmSign.TabIndex = 18;
@@ -306,7 +306,7 @@ namespace midterm_project
             // 
             // groupBoxForget
             // 
-            this.groupBoxForget.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
+            this.groupBoxForget.BackColor = System.Drawing.Color.Transparent;
             this.groupBoxForget.Controls.Add(this.txtForgetConfirmPW);
             this.groupBoxForget.Controls.Add(this.label11);
             this.groupBoxForget.Controls.Add(this.txtForgetNewPW);
@@ -315,9 +315,9 @@ namespace midterm_project
             this.groupBoxForget.Controls.Add(this.txtForgetEmail);
             this.groupBoxForget.Controls.Add(this.label8);
             this.groupBoxForget.Controls.Add(this.label9);
-            this.groupBoxForget.Location = new System.Drawing.Point(50, 47);
+            this.groupBoxForget.Location = new System.Drawing.Point(23, 64);
             this.groupBoxForget.Name = "groupBoxForget";
-            this.groupBoxForget.Size = new System.Drawing.Size(350, 322);
+            this.groupBoxForget.Size = new System.Drawing.Size(350, 376);
             this.groupBoxForget.TabIndex = 12;
             this.groupBoxForget.TabStop = false;
             this.groupBoxForget.Text = "忘記密碼";
@@ -326,7 +326,7 @@ namespace midterm_project
             // txtForgetConfirmPW
             // 
             this.txtForgetConfirmPW.Font = new System.Drawing.Font("宋体", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtForgetConfirmPW.Location = new System.Drawing.Point(111, 187);
+            this.txtForgetConfirmPW.Location = new System.Drawing.Point(111, 217);
             this.txtForgetConfirmPW.Name = "txtForgetConfirmPW";
             this.txtForgetConfirmPW.PasswordChar = '*';
             this.txtForgetConfirmPW.Size = new System.Drawing.Size(223, 31);
@@ -335,7 +335,7 @@ namespace midterm_project
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(7, 190);
+            this.label11.Location = new System.Drawing.Point(7, 220);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(98, 21);
             this.label11.TabIndex = 10;
@@ -344,7 +344,7 @@ namespace midterm_project
             // txtForgetNewPW
             // 
             this.txtForgetNewPW.Font = new System.Drawing.Font("宋体", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtForgetNewPW.Location = new System.Drawing.Point(111, 117);
+            this.txtForgetNewPW.Location = new System.Drawing.Point(111, 132);
             this.txtForgetNewPW.Name = "txtForgetNewPW";
             this.txtForgetNewPW.PasswordChar = '*';
             this.txtForgetNewPW.Size = new System.Drawing.Size(223, 31);
@@ -353,7 +353,7 @@ namespace midterm_project
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(29, 120);
+            this.label10.Location = new System.Drawing.Point(29, 135);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(76, 21);
             this.label10.TabIndex = 8;
@@ -362,7 +362,7 @@ namespace midterm_project
             // txtForgetVerify
             // 
             this.txtForgetVerify.Font = new System.Drawing.Font("宋体", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtForgetVerify.Location = new System.Drawing.Point(111, 257);
+            this.txtForgetVerify.Location = new System.Drawing.Point(112, 302);
             this.txtForgetVerify.Name = "txtForgetVerify";
             this.txtForgetVerify.Size = new System.Drawing.Size(101, 31);
             this.txtForgetVerify.TabIndex = 4;
@@ -378,7 +378,7 @@ namespace midterm_project
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(29, 260);
+            this.label8.Location = new System.Drawing.Point(30, 305);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(76, 21);
             this.label8.TabIndex = 5;
@@ -396,7 +396,7 @@ namespace midterm_project
             // btnForgetChange
             // 
             this.btnForgetChange.Font = new System.Drawing.Font("宋体", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnForgetChange.Location = new System.Drawing.Point(242, 394);
+            this.btnForgetChange.Location = new System.Drawing.Point(220, 529);
             this.btnForgetChange.Name = "btnForgetChange";
             this.btnForgetChange.Size = new System.Drawing.Size(142, 61);
             this.btnForgetChange.TabIndex = 20;
@@ -407,7 +407,7 @@ namespace midterm_project
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(3, 375);
+            this.button1.Location = new System.Drawing.Point(282, 613);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 42);
             this.button1.TabIndex = 21;
@@ -420,17 +420,18 @@ namespace midterm_project
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
-            this.ClientSize = new System.Drawing.Size(450, 480);
+            this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
+            this.ClientSize = new System.Drawing.Size(400, 705);
             this.Controls.Add(this.button1);
-            this.Controls.Add(this.groupBoxSignup);
-            this.Controls.Add(this.groupBoxForget);
             this.Controls.Add(this.btnForgetChange);
             this.Controls.Add(this.btnLogin);
             this.Controls.Add(this.btnSignup);
             this.Controls.Add(this.btnSendEmail);
             this.Controls.Add(this.btnForget);
             this.Controls.Add(this.btnConfirmSign);
+            this.Controls.Add(this.groupBoxForget);
             this.Controls.Add(this.groupBoxLogin);
+            this.Controls.Add(this.groupBoxSignup);
             this.Font = new System.Drawing.Font("新宋体", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
