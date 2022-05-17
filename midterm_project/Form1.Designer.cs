@@ -63,6 +63,7 @@ namespace midterm_project
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.btnForgetChange = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             this.groupBoxLogin.SuspendLayout();
             this.groupBoxSignup.SuspendLayout();
             this.groupBoxForget.SuspendLayout();
@@ -404,12 +405,23 @@ namespace midterm_project
             this.btnForgetChange.Visible = false;
             this.btnForgetChange.Click += new System.EventHandler(this.btnForgetChange_Click);
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(3, 375);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 42);
+            this.button1.TabIndex = 21;
+            this.button1.Text = "test";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
             this.ClientSize = new System.Drawing.Size(450, 480);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.groupBoxSignup);
             this.Controls.Add(this.groupBoxForget);
             this.Controls.Add(this.btnForgetChange);
@@ -423,6 +435,7 @@ namespace midterm_project
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
             this.Name = "Form1";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "會員登入";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.groupBoxLogin.ResumeLayout(false);
@@ -470,6 +483,7 @@ namespace midterm_project
         private System.Windows.Forms.Button btnForgetChange;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.TextBox txtSignPhone;
+        private System.Windows.Forms.Button button1;
     }
 }
 

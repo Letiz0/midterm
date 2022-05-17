@@ -32,5 +32,26 @@ namespace midterm_project
             Hide();
             GlobalVar.form1.Show();
         }
+
+        private void btnPublish_Click(object sender, EventArgs e)
+        {
+            Hide();
+            GlobalVar.formPublish = new Publish();
+            GlobalVar.formPublish.Show();
+        }
+
+        private void btnMember_Click(object sender, EventArgs e)
+        {
+            Hide();
+            GlobalVar.formMember = new Member();
+            GlobalVar.formMember.Show();
+        }
+
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            Hide();
+            GlobalVar.formSearch = new Search();
+            GlobalVar.formSearch.Show();
+        }
     }
 }

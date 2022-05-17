@@ -243,5 +243,12 @@ namespace midterm_project
                 }
             }
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Hide();
+            GlobalVar.formMain = new FormMain();
+            GlobalVar.formMain.Show();
+        }
     }
 }
