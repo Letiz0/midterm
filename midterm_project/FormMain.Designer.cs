@@ -39,7 +39,7 @@ namespace midterm_project
             // btnBackToLogin
             // 
             this.btnBackToLogin.Font = new System.Drawing.Font("新宋体", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnBackToLogin.Location = new System.Drawing.Point(92, 421);
+            this.btnBackToLogin.Location = new System.Drawing.Point(95, 487);
             this.btnBackToLogin.Name = "btnBackToLogin";
             this.btnBackToLogin.Size = new System.Drawing.Size(163, 74);
             this.btnBackToLogin.TabIndex = 0;
@@ -49,19 +49,21 @@ namespace midterm_project
             // 
             // btnMember
             // 
+            this.btnMember.BackColor = System.Drawing.Color.Transparent;
             this.btnMember.Font = new System.Drawing.Font("新宋体", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnMember.Location = new System.Drawing.Point(92, 298);
+            this.btnMember.ForeColor = System.Drawing.Color.Black;
+            this.btnMember.Location = new System.Drawing.Point(95, 342);
             this.btnMember.Name = "btnMember";
             this.btnMember.Size = new System.Drawing.Size(163, 74);
             this.btnMember.TabIndex = 1;
             this.btnMember.Text = "會員管理";
-            this.btnMember.UseVisualStyleBackColor = true;
+            this.btnMember.UseVisualStyleBackColor = false;
             this.btnMember.Click += new System.EventHandler(this.btnMember_Click);
             // 
             // btnPublish
             // 
             this.btnPublish.Font = new System.Drawing.Font("新宋体", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnPublish.Location = new System.Drawing.Point(92, 175);
+            this.btnPublish.Location = new System.Drawing.Point(95, 197);
             this.btnPublish.Name = "btnPublish";
             this.btnPublish.Size = new System.Drawing.Size(163, 74);
             this.btnPublish.TabIndex = 2;
@@ -72,7 +74,7 @@ namespace midterm_project
             // btnSearch
             // 
             this.btnSearch.Font = new System.Drawing.Font("新宋体", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSearch.Location = new System.Drawing.Point(92, 52);
+            this.btnSearch.Location = new System.Drawing.Point(95, 52);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(163, 74);
             this.btnSearch.TabIndex = 3;
@@ -85,7 +87,8 @@ namespace midterm_project
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.ClientSize = new System.Drawing.Size(351, 545);
+            this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
+            this.ClientSize = new System.Drawing.Size(367, 622);
             this.Controls.Add(this.btnSearch);
             this.Controls.Add(this.btnPublish);
             this.Controls.Add(this.btnMember);

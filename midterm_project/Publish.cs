@@ -95,14 +95,36 @@ namespace midterm_project
             PicMode("");
         }
 
+        List<int> selectedID = new List<int>();
+
         private void listView1_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-
+            
         }
 
         private void btn搜尋_Click(object sender, EventArgs e)
         {
             PicMode(txt搜尋.Text);
         }
+
+        private void txt搜尋_TextChanged(object sender, EventArgs e)
+        {
+            if (txt搜尋.Text == "")
+            {
+                PicMode("");
+            }
+        }
+
+        private void txt搜尋_Click(object sender, EventArgs e)
+        {
+            if (txt搜尋.Text == "搜尋")
+            {
+                txt搜尋.Text = "";
+                txt搜尋.ForeColor = Color.Black;
+                txt搜尋.TextAlign = HorizontalAlignment.Left;
+            }
+                            
+        }
+
     }
 }

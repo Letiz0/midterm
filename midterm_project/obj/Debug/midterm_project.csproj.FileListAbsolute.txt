@@ -23,3 +23,6 @@ C:\Users\soga5\Desktop\midterm\midterm_project\obj\Debug\midterm_project.pdb
 C:\Users\iii\Desktop\Letiz\C#\C#_adoNet\midterm_project\midterm_project\obj\Debug\midterm_project.Member.resources
 C:\Users\iii\Desktop\Letiz\C#\C#_adoNet\midterm_project\midterm_project\obj\Debug\midterm_project.Publish.resources
 C:\Users\iii\Desktop\Letiz\C#\C#_adoNet\midterm_project\midterm_project\obj\Debug\midterm_project.Search.resources
+C:\Users\soga5\Desktop\midterm\midterm_project\obj\Debug\midterm_project.Member.resources
+C:\Users\soga5\Desktop\midterm\midterm_project\obj\Debug\midterm_project.Publish.resources
+C:\Users\soga5\Desktop\midterm\midterm_project\obj\Debug\midterm_project.Search.resources
