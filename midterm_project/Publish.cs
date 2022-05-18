@@ -21,6 +21,9 @@ namespace midterm_project
 
         Dictionary<int, string> game = new Dictionary<int, string>();
 
+        List<int> exchangeIn = new List<int>();
+        List<int> exchangeOut = new List<int>();
+
         void LoadPic()
         {
             Sql.Connect();
@@ -95,11 +98,24 @@ namespace midterm_project
             PicMode("");
         }
 
-        List<int> selectedID = new List<int>();
-
         private void listView1_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            
+            if (listBox借入.Visible == true && exchangeIn.Count < 5)
+            {
+                int id = (int)listView1.SelectedItems[0].Tag;
+                exchangeIn.Add(id);
+                listBox借入.Items.Add(game.ElementAt(id).Value);
+            }
+            else if (listBox借出.Visible == true && exchangeOut.Count < 5)
+            {
+                int id = (int)listView1.SelectedItems[0].Tag;
+                exchangeOut.Add(id);
+                listBox借出.Items.Add(game.ElementAt(id).Value);
+            }
+            else if (exchangeIn.Count == 5 || exchangeOut.Count == 5)
+            {
+                MessageBox.Show("已達可選上限");
+            }
         }
 
         private void btn搜尋_Click(object sender, EventArgs e)
@@ -126,5 +142,27 @@ namespace midterm_project
                             
         }
 
+        private void btn借出_Click(object sender, EventArgs e)
+        {
+            panelBtn.Visible = true;
+            listBox借出.Visible = true;
+            listBox借入.Visible = false;
+        }
+
+        private void btn借入_Click(object sender, EventArgs e)
+        {
+            panelBtn.Visible = true;
+            listBox借入.Visible = true;
+            listBox借出.Visible = false;
+        }
+
+        private void btn清除全部_Click(object sender, EventArgs e)
+        {
+            DialogResult dialog = MessageBox.Show("確定要全部清除?", "", MessageBoxButtons.OKCancel);
+            if (dialog == DialogResult.OK)
+            {
+
+            }
+        }
     }
 }
