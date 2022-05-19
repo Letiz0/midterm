@@ -41,6 +41,8 @@ namespace midterm_project
             this.Name = "Member";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Member";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Member_FormClosing);
+            this.Load += new System.EventHandler(this.Member_Load);
             this.ResumeLayout(false);
 
         }

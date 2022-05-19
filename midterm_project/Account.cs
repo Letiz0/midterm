@@ -8,8 +8,10 @@ namespace midterm_project
 {
     class Account
     {
-        public string Email { get; set; }
-        public string Password { get; set; }
+        public static string Email { get; set; }
+        public static string Password { get; set; }
+        public static int Id { get; set; }
+        
 
 
 

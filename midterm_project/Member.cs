@@ -16,5 +16,15 @@ namespace midterm_project
         {
             InitializeComponent();
         }
+
+        private void Member_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Member_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Application.Exit();
+        }
     }
 }

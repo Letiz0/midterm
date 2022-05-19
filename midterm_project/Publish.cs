@@ -24,6 +24,18 @@ namespace midterm_project
         List<int> exchangeIn = new List<int>();
         List<int> exchangeOut = new List<int>();
 
+        void SetProgress()
+        {
+            if (listBox借入.Visible)
+            {
+                progressBar1.Value = exchangeIn.Count;
+            }
+            else if (listBox借出.Visible)
+            {
+                progressBar1.Value = exchangeOut.Count;
+            }
+            
+        }
         void LoadPic()
         {
             Sql.Connect();
@@ -102,20 +114,38 @@ namespace midterm_project
         {
             if (listBox借入.Visible == true && exchangeIn.Count < 5)
             {
-                int id = (int)listView1.SelectedItems[0].Tag;
-                exchangeIn.Add(id);
-                listBox借入.Items.Add(game.ElementAt(id).Value);
+                int id = (int)listView1.SelectedItems[0].Tag;                
+
+                if (!exchangeIn.Contains(id))
+                {
+                    exchangeIn.Add(id);
+                    listBox借入.Items.Add(game.ElementAt(id).Value);
+                }
+                else
+                {
+                    MessageBox.Show("選取內容已存在");
+                }
             }
             else if (listBox借出.Visible == true && exchangeOut.Count < 5)
             {
-                int id = (int)listView1.SelectedItems[0].Tag;
-                exchangeOut.Add(id);
-                listBox借出.Items.Add(game.ElementAt(id).Value);
+                int id = (int)listView1.SelectedItems[0].Tag;                
+
+                if (!exchangeOut.Contains(id))
+                {
+                    exchangeOut.Add(id);
+                    listBox借出.Items.Add(game.ElementAt(id).Value);
+                }
+                else
+                {
+                    MessageBox.Show("選取內容已存在");
+                }
             }
             else if (exchangeIn.Count == 5 || exchangeOut.Count == 5)
             {
                 MessageBox.Show("已達可選上限");
             }
+
+            SetProgress();
         }
 
         private void btn搜尋_Click(object sender, EventArgs e)
@@ -138,8 +168,7 @@ namespace midterm_project
                 txt搜尋.Text = "";
                 txt搜尋.ForeColor = Color.Black;
                 txt搜尋.TextAlign = HorizontalAlignment.Left;
-            }
-                            
+            }                            
         }
 
         private void btn借出_Click(object sender, EventArgs e)
@@ -147,6 +176,39 @@ namespace midterm_project
             panelBtn.Visible = true;
             listBox借出.Visible = true;
             listBox借入.Visible = false;
+
+            exchangeOut.Clear();
+            listBox借出.Items.Clear();
+            pictureBox1.Image = null;
+
+            Sql.Connect();
+            string sql = "select * from exchange_out where member_id = @id";
+            SqlCommand cmd = new SqlCommand(sql, Sql.con);
+            cmd.Parameters.AddWithValue("@id", Account.Id);
+
+            SqlDataReader reader = cmd.ExecuteReader();
+
+            if (reader.Read())
+            {
+                for (int i = 1; i <= reader.FieldCount - 2; i++)
+                {
+                    if (reader.IsDBNull(i) == false)
+                    {
+                        exchangeOut.Add((int)reader[i]);
+                    }
+                }
+            }
+
+            reader.Close();
+            Sql.con.Close();
+
+            for (int i = 0; i < exchangeOut.Count; i++)
+            {
+                listBox借出.Items.Add(game.ElementAt(exchangeOut[i]).Value);
+            }
+
+            progressBar1.Visible = true;
+            SetProgress();
         }
 
         private void btn借入_Click(object sender, EventArgs e)
@@ -154,6 +216,39 @@ namespace midterm_project
             panelBtn.Visible = true;
             listBox借入.Visible = true;
             listBox借出.Visible = false;
+
+            exchangeIn.Clear();
+            listBox借入.Items.Clear();
+            pictureBox1.Image = null;
+
+            Sql.Connect();
+            string sql = "select * from exchange_in where member_id = @id";
+            SqlCommand cmd = new SqlCommand(sql, Sql.con);
+            cmd.Parameters.AddWithValue("@id", Account.Id);
+
+            SqlDataReader reader = cmd.ExecuteReader();
+
+            if (reader.Read())
+            {
+                for (int i = 1; i <= reader.FieldCount - 2; i++)
+                {
+                    if (reader.IsDBNull(i) == false)
+                    {
+                        exchangeIn.Add((int)reader[i]);
+                    }
+                }
+            }
+
+            reader.Close();
+            Sql.con.Close();
+
+            for (int i = 0; i < exchangeIn.Count; i++)
+            {
+                listBox借入.Items.Add(game.ElementAt(exchangeIn[i]).Value);
+            }
+
+            progressBar1.Visible = true;
+            SetProgress();
         }
 
         private void btn清除全部_Click(object sender, EventArgs e)
@@ -161,8 +256,139 @@ namespace midterm_project
             DialogResult dialog = MessageBox.Show("確定要全部清除?", "", MessageBoxButtons.OKCancel);
             if (dialog == DialogResult.OK)
             {
+                if (listBox借入.Visible)
+                {
+                    exchangeIn.Clear();
+                    listBox借入.Items.Clear();
+                    pictureBox1.Image = null;
+                }
 
+                else if (listBox借出.Visible)
+                {
+                    exchangeOut.Clear();
+                    listBox借出.Items.Clear();
+                    pictureBox1.Image = null;
+                }
             }
+
+            SetProgress(); 
+        }
+
+        private void btn套用_Click(object sender, EventArgs e)
+        {
+            Sql.Connect();
+            string sql;
+            SqlCommand cmd;            
+
+            if (listBox借入.Visible)
+            {
+                for (int i = 0; i < 5;)
+                {
+                    if (i < exchangeIn.Count)
+                    {
+                        sql = string.Format("update exchange_in set {0} = {1} where member_id = {2}", "in_" + i, exchangeIn[i], Account.Id);
+                        cmd = new SqlCommand(sql, Sql.con);
+
+                        cmd.ExecuteNonQuery();
+
+                        i++;
+                    }
+                    else
+                    {
+                        sql = string.Format("update exchange_in set {0} = @null where member_id = {1}", "in_" + i, Account.Id);
+                        cmd = new SqlCommand(sql, Sql.con);
+                        cmd.Parameters.AddWithValue("@null", DBNull.Value);
+
+                        cmd.ExecuteNonQuery();
+
+                        i++;
+                    }                    
+                }
+
+                MessageBox.Show("套用變更成功");
+            }
+            else if (listBox借出.Visible)
+            {
+                for (int i = 0; i < 5;)
+                {
+                    if (i < exchangeOut.Count)
+                    {
+                        sql = string.Format("update exchange_out set {0} = {1} where member_id = {2}", "out_" + i, exchangeOut[i], Account.Id);
+                        cmd = new SqlCommand(sql, Sql.con);
+
+                        cmd.ExecuteNonQuery();
+
+                        i++;
+                    }
+                    else
+                    {
+                        sql = string.Format("update exchange_Out set {0} = @null where member_id = {1}", "out_" + i, Account.Id);
+                        cmd = new SqlCommand(sql, Sql.con);
+                        cmd.Parameters.AddWithValue("@null", DBNull.Value);
+
+                        cmd.ExecuteNonQuery();
+
+                        i++;
+                    }
+                }
+
+                Sql.con.Close();
+                MessageBox.Show("套用變更成功");
+            }
+        }
+
+        private void btn移除所選_Click(object sender, EventArgs e)
+        {
+            int indexIn = listBox借入.SelectedIndex;
+            int indexOut = listBox借出.SelectedIndex;
+
+            if (listBox借入.Visible && indexIn != -1)
+            {
+                exchangeIn.RemoveAt(indexIn);
+                listBox借入.Items.RemoveAt(indexIn);
+                pictureBox1.Image = null;
+            }
+
+            else if (listBox借出.Visible && indexOut != -1)
+            {
+                exchangeOut.RemoveAt(indexOut);
+                listBox借出.Items.RemoveAt(indexOut);
+                pictureBox1.Image = null;
+            }
+
+            else if (indexIn == -1 || indexOut == -1)
+            {
+                MessageBox.Show("請選取項目");
+            }            
+
+            SetProgress(); 
+        }
+
+        private void listBox借入_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (listBox借入.SelectedIndex != -1)
+            {
+                pictureBox1.Image = imageList1.Images[exchangeIn[listBox借入.SelectedIndex]];
+            }            
+        }
+
+        private void listBox借出_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (listBox借出.SelectedIndex != -1)
+            {
+                pictureBox1.Image = imageList1.Images[exchangeOut[listBox借出.SelectedIndex]];
+            }            
+        }
+
+        private void btnBack_Click(object sender, EventArgs e)
+        {
+            Dispose();
+            GlobalVar.formMain.Show();
+        }
+
+        private void Publish_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Application.Exit();
         }
     }
 }

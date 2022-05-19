@@ -19,7 +19,7 @@ namespace midterm_project
 
         private void FormMain_FormClosing(object sender, FormClosingEventArgs e)
         {
-            Application.ExitThread();
+            Application.Exit();
         }
 
         private void FormMain_Load(object sender, EventArgs e)
@@ -29,7 +29,7 @@ namespace midterm_project
 
         private void btnBackToLogin_Click(object sender, EventArgs e)
         {
-            Hide();
+            Dispose();
             GlobalVar.form1.Show();
         }
 

@@ -18,7 +18,7 @@ namespace midterm_project
         {
             InitializeComponent();
         }
-
+        
         
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -28,8 +28,6 @@ namespace midterm_project
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            Account member = new Account();            
-
             Sql.Connect();
 
             string sql = "select count(*) from member where email = @email and password = @pw;";
@@ -41,16 +39,23 @@ namespace midterm_project
 
             if (count != 0)
             {
+                sql = "select id from member where email = @email";
+                cmd = new SqlCommand(sql, Sql.con);
+                cmd.Parameters.AddWithValue("@email", txtEmail.Text);
+
+                int id = (int)cmd.ExecuteScalar();
+
                 Hide();
                 GlobalVar.formMain = new FormMain();
                 GlobalVar.formMain.Show();
-                member.Email = txtEmail.Text;
-                member.Password = txtPW.Text;
+                
+                Account.Email = txtEmail.Text;
+                Account.Password = txtPW.Text;
+                Account.Id = id;
             }
             else
             {
                 MessageBox.Show("使用者信箱或密碼錯誤");
-                txtEmail.Text = "";
                 txtPW.Text = "";
             }
 
@@ -100,6 +105,19 @@ namespace midterm_project
 
                 cmd.ExecuteNonQuery();
 
+                sign = "insert into exchange_in (member_id) values ((select id from member where email = @email));";
+                cmd = new SqlCommand(sign, Sql.con);
+                cmd.Parameters.AddWithValue("@email", txtSignEmail.Text);
+
+                cmd.ExecuteNonQuery();
+
+                sign = "insert into exchange_out (member_id) values ((select id from member where email = @email));";
+                cmd = new SqlCommand(sign, Sql.con);
+                cmd.Parameters.AddWithValue("@email", txtSignEmail.Text);
+
+                cmd.ExecuteNonQuery();
+
+
                 Sql.con.Close();
 
                 MessageBox.Show("註冊成功");
@@ -139,7 +157,7 @@ namespace midterm_project
         {
             verify = random.Next(1000, 9999).ToString();
 
-            if (txtEmail.Text != "" || txtForgetEmail.Text != "")
+            if (txtSignEmail.Text != "" || txtForgetEmail.Text != "")
             {
                 if (groupBoxSignup.Visible == true)
                 {
@@ -242,13 +260,6 @@ namespace midterm_project
                     txtForgetConfirmPW.Text = "";
                 }
             }
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            Hide();
-            GlobalVar.formMain = new FormMain();
-            GlobalVar.formMain.Show();
         }
     }
 }

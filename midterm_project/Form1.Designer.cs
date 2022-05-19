@@ -63,7 +63,6 @@ namespace midterm_project
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.btnForgetChange = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
             this.groupBoxLogin.SuspendLayout();
             this.groupBoxSignup.SuspendLayout();
             this.groupBoxForget.SuspendLayout();
@@ -98,6 +97,7 @@ namespace midterm_project
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(223, 31);
             this.txtEmail.TabIndex = 2;
+            this.txtEmail.Text = "a80679271@gmail.com";
             // 
             // btnForget
             // 
@@ -118,6 +118,7 @@ namespace midterm_project
             this.txtPW.PasswordChar = '*';
             this.txtPW.Size = new System.Drawing.Size(223, 31);
             this.txtPW.TabIndex = 4;
+            this.txtPW.Text = "5566";
             // 
             // label1
             // 
@@ -405,16 +406,6 @@ namespace midterm_project
             this.btnForgetChange.Visible = false;
             this.btnForgetChange.Click += new System.EventHandler(this.btnForgetChange_Click);
             // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(282, 613);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 42);
-            this.button1.TabIndex = 21;
-            this.button1.Text = "test";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 21F);
@@ -422,16 +413,15 @@ namespace midterm_project
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.ClientSize = new System.Drawing.Size(400, 705);
-            this.Controls.Add(this.button1);
             this.Controls.Add(this.btnForgetChange);
             this.Controls.Add(this.btnLogin);
             this.Controls.Add(this.btnSignup);
             this.Controls.Add(this.btnSendEmail);
             this.Controls.Add(this.btnForget);
             this.Controls.Add(this.btnConfirmSign);
-            this.Controls.Add(this.groupBoxForget);
             this.Controls.Add(this.groupBoxLogin);
             this.Controls.Add(this.groupBoxSignup);
+            this.Controls.Add(this.groupBoxForget);
             this.Font = new System.Drawing.Font("新宋体", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
@@ -484,7 +474,6 @@ namespace midterm_project
         private System.Windows.Forms.Button btnForgetChange;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.TextBox txtSignPhone;
-        private System.Windows.Forms.Button button1;
     }
 }
 

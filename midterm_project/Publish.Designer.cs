@@ -40,10 +40,14 @@ namespace midterm_project
             this.btn移除所選 = new System.Windows.Forms.Button();
             this.btn清除全部 = new System.Windows.Forms.Button();
             this.panelBtn = new System.Windows.Forms.Panel();
+            this.btn套用 = new System.Windows.Forms.Button();
             this.listBox借出 = new System.Windows.Forms.ListBox();
             this.listBox借入 = new System.Windows.Forms.ListBox();
-            this.btn套用 = new System.Windows.Forms.Button();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.progressBar1 = new System.Windows.Forms.ProgressBar();
+            this.btnBack = new System.Windows.Forms.Button();
             this.panelBtn.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // imageList1
@@ -54,11 +58,12 @@ namespace midterm_project
             // 
             // listView1
             // 
-            this.listView1.BackColor = System.Drawing.SystemColors.InactiveBorder;
+            this.listView1.BackColor = System.Drawing.Color.White;
             this.listView1.Font = new System.Drawing.Font("微軟正黑體", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.listView1.HideSelection = false;
             this.listView1.Location = new System.Drawing.Point(15, 12);
             this.listView1.Margin = new System.Windows.Forms.Padding(6);
+            this.listView1.MultiSelect = false;
             this.listView1.Name = "listView1";
             this.listView1.Size = new System.Drawing.Size(697, 458);
             this.listView1.TabIndex = 0;
@@ -114,18 +119,19 @@ namespace midterm_project
             // btn移除所選
             // 
             this.btn移除所選.Font = new System.Drawing.Font("新宋体", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn移除所選.Location = new System.Drawing.Point(14, 3);
+            this.btn移除所選.Location = new System.Drawing.Point(43, 58);
             this.btn移除所選.Name = "btn移除所選";
             this.btn移除所選.Size = new System.Drawing.Size(98, 40);
             this.btn移除所選.TabIndex = 3;
             this.btn移除所選.Text = "移除所選";
             this.btn移除所選.UseVisualStyleBackColor = true;
+            this.btn移除所選.Click += new System.EventHandler(this.btn移除所選_Click);
             // 
             // btn清除全部
             // 
             this.btn清除全部.Font = new System.Drawing.Font("新宋体", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn清除全部.ForeColor = System.Drawing.Color.Red;
-            this.btn清除全部.Location = new System.Drawing.Point(14, 53);
+            this.btn清除全部.Location = new System.Drawing.Point(43, 104);
             this.btn清除全部.Name = "btn清除全部";
             this.btn清除全部.Size = new System.Drawing.Size(98, 40);
             this.btn清除全部.TabIndex = 4;
@@ -139,43 +145,76 @@ namespace midterm_project
             this.panelBtn.Controls.Add(this.btn套用);
             this.panelBtn.Controls.Add(this.btn清除全部);
             this.panelBtn.Controls.Add(this.btn移除所選);
-            this.panelBtn.Location = new System.Drawing.Point(721, 127);
+            this.panelBtn.Location = new System.Drawing.Point(884, 142);
             this.panelBtn.Name = "panelBtn";
-            this.panelBtn.Size = new System.Drawing.Size(304, 100);
+            this.panelBtn.Size = new System.Drawing.Size(141, 149);
             this.panelBtn.TabIndex = 5;
             this.panelBtn.Visible = false;
             // 
-            // listBox借出
-            // 
-            this.listBox借出.Font = new System.Drawing.Font("新宋体", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.listBox借出.FormattingEnabled = true;
-            this.listBox借出.ItemHeight = 21;
-            this.listBox借出.Location = new System.Drawing.Point(721, 12);
-            this.listBox借出.Name = "listBox借出";
-            this.listBox借出.Size = new System.Drawing.Size(304, 109);
-            this.listBox借出.TabIndex = 6;
-            this.listBox借出.Visible = false;
-            // 
-            // listBox借入
-            // 
-            this.listBox借入.Font = new System.Drawing.Font("新宋体", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.listBox借入.FormattingEnabled = true;
-            this.listBox借入.ItemHeight = 21;
-            this.listBox借入.Location = new System.Drawing.Point(721, 263);
-            this.listBox借入.Name = "listBox借入";
-            this.listBox借入.Size = new System.Drawing.Size(304, 109);
-            this.listBox借入.TabIndex = 7;
-            this.listBox借入.Visible = false;
-            // 
             // btn套用
             // 
-            this.btn套用.Font = new System.Drawing.Font("新宋体", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn套用.Location = new System.Drawing.Point(191, 3);
+            this.btn套用.Font = new System.Drawing.Font("新宋体", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn套用.Location = new System.Drawing.Point(7, 0);
             this.btn套用.Name = "btn套用";
-            this.btn套用.Size = new System.Drawing.Size(98, 40);
+            this.btn套用.Size = new System.Drawing.Size(134, 52);
             this.btn套用.TabIndex = 5;
             this.btn套用.Text = "套用變更";
             this.btn套用.UseVisualStyleBackColor = true;
+            this.btn套用.Click += new System.EventHandler(this.btn套用_Click);
+            // 
+            // listBox借出
+            // 
+            this.listBox借出.BackColor = System.Drawing.Color.White;
+            this.listBox借出.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.listBox借出.FormattingEnabled = true;
+            this.listBox借出.ItemHeight = 20;
+            this.listBox借出.Location = new System.Drawing.Point(807, 12);
+            this.listBox借出.Name = "listBox借出";
+            this.listBox借出.Size = new System.Drawing.Size(218, 104);
+            this.listBox借出.TabIndex = 6;
+            this.listBox借出.Visible = false;
+            this.listBox借出.SelectedIndexChanged += new System.EventHandler(this.listBox借出_SelectedIndexChanged);
+            // 
+            // listBox借入
+            // 
+            this.listBox借入.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.listBox借入.FormattingEnabled = true;
+            this.listBox借入.ItemHeight = 20;
+            this.listBox借入.Location = new System.Drawing.Point(807, 12);
+            this.listBox借入.Name = "listBox借入";
+            this.listBox借入.Size = new System.Drawing.Size(218, 104);
+            this.listBox借入.TabIndex = 7;
+            this.listBox借入.Visible = false;
+            this.listBox借入.SelectedIndexChanged += new System.EventHandler(this.listBox借入_SelectedIndexChanged);
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBox1.Location = new System.Drawing.Point(721, 12);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(83, 133);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 8;
+            this.pictureBox1.TabStop = false;
+            // 
+            // progressBar1
+            // 
+            this.progressBar1.Location = new System.Drawing.Point(807, 116);
+            this.progressBar1.Maximum = 5;
+            this.progressBar1.Name = "progressBar1";
+            this.progressBar1.Size = new System.Drawing.Size(218, 20);
+            this.progressBar1.TabIndex = 10;
+            this.progressBar1.Visible = false;
+            // 
+            // btnBack
+            // 
+            this.btnBack.Image = ((System.Drawing.Image)(resources.GetObject("btnBack.Image")));
+            this.btnBack.Location = new System.Drawing.Point(971, 507);
+            this.btnBack.Name = "btnBack";
+            this.btnBack.Size = new System.Drawing.Size(54, 62);
+            this.btnBack.TabIndex = 11;
+            this.btnBack.UseVisualStyleBackColor = true;
+            this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
             // 
             // Publish
             // 
@@ -185,7 +224,9 @@ namespace midterm_project
             this.BackColor = System.Drawing.Color.PapayaWhip;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.ClientSize = new System.Drawing.Size(1037, 581);
-            this.Controls.Add(this.listBox借入);
+            this.Controls.Add(this.btnBack);
+            this.Controls.Add(this.progressBar1);
+            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.listBox借出);
             this.Controls.Add(this.panelBtn);
             this.Controls.Add(this.btn借入);
@@ -193,14 +234,17 @@ namespace midterm_project
             this.Controls.Add(this.btn搜尋);
             this.Controls.Add(this.txt搜尋);
             this.Controls.Add(this.listView1);
+            this.Controls.Add(this.listBox借入);
             this.Font = new System.Drawing.Font("新宋体", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(6);
             this.Name = "Publish";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Publish";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Publish_FormClosing);
             this.Load += new System.EventHandler(this.Publish_Load);
             this.panelBtn.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -220,5 +264,8 @@ namespace midterm_project
         private System.Windows.Forms.ListBox listBox借出;
         private System.Windows.Forms.ListBox listBox借入;
         private System.Windows.Forms.Button btn套用;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.ProgressBar progressBar1;
+        private System.Windows.Forms.Button btnBack;
     }
 }

@@ -1,7 +1,6 @@
 C:\Users\iii\Desktop\Letiz\C#\C#_adoNet\midterm_project\midterm_project\bin\Debug\midterm_project.exe.config
 C:\Users\iii\Desktop\Letiz\C#\C#_adoNet\midterm_project\midterm_project\bin\Debug\midterm_project.exe
 C:\Users\iii\Desktop\Letiz\C#\C#_adoNet\midterm_project\midterm_project\bin\Debug\midterm_project.pdb
-C:\Users\iii\Desktop\Letiz\C#\C#_adoNet\midterm_project\midterm_project\obj\Debug\midterm_project.csprojAssemblyReference.cache
 C:\Users\iii\Desktop\Letiz\C#\C#_adoNet\midterm_project\midterm_project\obj\Debug\midterm_project.Form1.resources
 C:\Users\iii\Desktop\Letiz\C#\C#_adoNet\midterm_project\midterm_project\obj\Debug\midterm_project.Properties.Resources.resources
 C:\Users\iii\Desktop\Letiz\C#\C#_adoNet\midterm_project\midterm_project\obj\Debug\midterm_project.csproj.GenerateResource.cache
@@ -26,3 +25,4 @@ C:\Users\iii\Desktop\Letiz\C#\C#_adoNet\midterm_project\midterm_project\obj\Debu
 C:\Users\soga5\Desktop\midterm\midterm_project\obj\Debug\midterm_project.Member.resources
 C:\Users\soga5\Desktop\midterm\midterm_project\obj\Debug\midterm_project.Publish.resources
 C:\Users\soga5\Desktop\midterm\midterm_project\obj\Debug\midterm_project.Search.resources
+C:\Users\iii\Desktop\Letiz\C#\C#_adoNet\midterm_project\midterm_project\obj\Debug\midterm_project.csproj.AssemblyReference.cache

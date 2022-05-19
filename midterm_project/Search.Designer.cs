@@ -39,6 +39,8 @@ namespace midterm_project
             this.Name = "Search";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Search";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Search_FormClosing);
+            this.Load += new System.EventHandler(this.Search_Load);
             this.ResumeLayout(false);
 
         }
