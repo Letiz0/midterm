@@ -277,11 +277,13 @@ namespace midterm_project
         private void btn套用_Click(object sender, EventArgs e)
         {
             Sql.Connect();
-            string sql;
-            SqlCommand cmd;            
+                        
 
             if (listBox借入.Visible)
             {
+                string sql;
+                SqlCommand cmd;
+
                 for (int i = 0; i < 5;)
                 {
                     if (i < exchangeIn.Count)
@@ -309,6 +311,9 @@ namespace midterm_project
             }
             else if (listBox借出.Visible)
             {
+                string sql;
+                SqlCommand cmd;              
+
                 for (int i = 0; i < 5;)
                 {
                     if (i < exchangeOut.Count)
