@@ -40,6 +40,8 @@ namespace midterm_project
             this.btn移除所選 = new System.Windows.Forms.Button();
             this.btn清除全部 = new System.Windows.Forms.Button();
             this.panelBtn = new System.Windows.Forms.Panel();
+            this.chk面交 = new System.Windows.Forms.CheckBox();
+            this.chk郵寄 = new System.Windows.Forms.CheckBox();
             this.btn套用 = new System.Windows.Forms.Button();
             this.listBox借出 = new System.Windows.Forms.ListBox();
             this.listBox借入 = new System.Windows.Forms.ListBox();
@@ -119,7 +121,7 @@ namespace midterm_project
             // btn移除所選
             // 
             this.btn移除所選.Font = new System.Drawing.Font("新宋体", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn移除所選.Location = new System.Drawing.Point(43, 58);
+            this.btn移除所選.Location = new System.Drawing.Point(206, 59);
             this.btn移除所選.Name = "btn移除所選";
             this.btn移除所選.Size = new System.Drawing.Size(98, 40);
             this.btn移除所選.TabIndex = 3;
@@ -131,7 +133,7 @@ namespace midterm_project
             // 
             this.btn清除全部.Font = new System.Drawing.Font("新宋体", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn清除全部.ForeColor = System.Drawing.Color.Red;
-            this.btn清除全部.Location = new System.Drawing.Point(43, 104);
+            this.btn清除全部.Location = new System.Drawing.Point(206, 105);
             this.btn清除全部.Name = "btn清除全部";
             this.btn清除全部.Size = new System.Drawing.Size(98, 40);
             this.btn清除全部.TabIndex = 4;
@@ -142,19 +144,52 @@ namespace midterm_project
             // panelBtn
             // 
             this.panelBtn.BackColor = System.Drawing.Color.Transparent;
+            this.panelBtn.Controls.Add(this.chk面交);
+            this.panelBtn.Controls.Add(this.chk郵寄);
             this.panelBtn.Controls.Add(this.btn套用);
             this.panelBtn.Controls.Add(this.btn清除全部);
             this.panelBtn.Controls.Add(this.btn移除所選);
-            this.panelBtn.Location = new System.Drawing.Point(884, 142);
+            this.panelBtn.Location = new System.Drawing.Point(721, 136);
             this.panelBtn.Name = "panelBtn";
-            this.panelBtn.Size = new System.Drawing.Size(141, 149);
+            this.panelBtn.Size = new System.Drawing.Size(304, 149);
             this.panelBtn.TabIndex = 5;
             this.panelBtn.Visible = false;
+            // 
+            // chk面交
+            // 
+            this.chk面交.AutoSize = true;
+            this.chk面交.BackColor = System.Drawing.Color.Transparent;
+            this.chk面交.Checked = true;
+            this.chk面交.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chk面交.Font = new System.Drawing.Font("新宋体", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chk面交.ForeColor = System.Drawing.Color.Black;
+            this.chk面交.Location = new System.Drawing.Point(86, 3);
+            this.chk面交.Name = "chk面交";
+            this.chk面交.Size = new System.Drawing.Size(68, 23);
+            this.chk面交.TabIndex = 12;
+            this.chk面交.Text = "面交";
+            this.chk面交.UseVisualStyleBackColor = false;
+            this.chk面交.CheckedChanged += new System.EventHandler(this.chk面交_CheckedChanged);
+            // 
+            // chk郵寄
+            // 
+            this.chk郵寄.AutoSize = true;
+            this.chk郵寄.BackColor = System.Drawing.Color.Transparent;
+            this.chk郵寄.Checked = true;
+            this.chk郵寄.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chk郵寄.Font = new System.Drawing.Font("新宋体", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chk郵寄.Location = new System.Drawing.Point(86, 27);
+            this.chk郵寄.Name = "chk郵寄";
+            this.chk郵寄.Size = new System.Drawing.Size(68, 23);
+            this.chk郵寄.TabIndex = 13;
+            this.chk郵寄.Text = "郵寄";
+            this.chk郵寄.UseVisualStyleBackColor = false;
+            this.chk郵寄.CheckedChanged += new System.EventHandler(this.chk郵寄_CheckedChanged);
             // 
             // btn套用
             // 
             this.btn套用.Font = new System.Drawing.Font("新宋体", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn套用.Location = new System.Drawing.Point(7, 0);
+            this.btn套用.Location = new System.Drawing.Point(170, 1);
             this.btn套用.Name = "btn套用";
             this.btn套用.Size = new System.Drawing.Size(134, 52);
             this.btn套用.TabIndex = 5;
@@ -228,13 +263,13 @@ namespace midterm_project
             this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.listBox借出);
-            this.Controls.Add(this.panelBtn);
             this.Controls.Add(this.btn借入);
             this.Controls.Add(this.btn借出);
             this.Controls.Add(this.btn搜尋);
             this.Controls.Add(this.txt搜尋);
             this.Controls.Add(this.listView1);
             this.Controls.Add(this.listBox借入);
+            this.Controls.Add(this.panelBtn);
             this.Font = new System.Drawing.Font("新宋体", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(6);
@@ -244,6 +279,7 @@ namespace midterm_project
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Publish_FormClosing);
             this.Load += new System.EventHandler(this.Publish_Load);
             this.panelBtn.ResumeLayout(false);
+            this.panelBtn.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -267,5 +303,7 @@ namespace midterm_project
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.ProgressBar progressBar1;
         private System.Windows.Forms.Button btnBack;
+        private System.Windows.Forms.CheckBox chk面交;
+        private System.Windows.Forms.CheckBox chk郵寄;
     }
 }

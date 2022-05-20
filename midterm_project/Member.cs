@@ -26,5 +26,11 @@ namespace midterm_project
         {
             Application.Exit();
         }
+
+        private void btnBack_Click(object sender, EventArgs e)
+        {
+            Dispose();
+            GlobalVar.formMain.Show();
+        }
     }
 }

@@ -95,13 +95,14 @@ namespace midterm_project
 
             if (txtVerify.Text == verify && txtSignPW.Text == txtSignCheckPW.Text && count == 0)
             {
-                string sign = "insert into member (email, password, location, phone) values (@email, @password, @location, @phone);";
+                string sign = "insert into member (email, password, location, phone, face, mail, success, nickname) values (@email, @password, @location, @phone, 1, 1, 0, @nickname);";
                 SqlCommand cmd = new SqlCommand(sign, Sql.con);
                 
                 cmd.Parameters.AddWithValue("@email", txtSignEmail.Text);
                 cmd.Parameters.AddWithValue("@password", txtSignPW.Text);
                 cmd.Parameters.AddWithValue("@location", txtSignLocation.Text);
                 cmd.Parameters.AddWithValue("@phone", txtSignPhone.Text);
+                cmd.Parameters.AddWithValue("@nickname", txt暱稱.Text);
 
                 cmd.ExecuteNonQuery();
 

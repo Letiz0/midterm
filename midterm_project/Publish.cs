@@ -107,7 +107,7 @@ namespace midterm_project
         private void Publish_Load(object sender, EventArgs e)
         {
             LoadPic();
-            PicMode("");
+            PicMode("");            
         }
 
         private void listView1_MouseDoubleClick(object sender, MouseEventArgs e)
@@ -116,28 +116,36 @@ namespace midterm_project
             {
                 int id = (int)listView1.SelectedItems[0].Tag;                
 
-                if (!exchangeIn.Contains(id))
+                if (!exchangeIn.Contains(id) && !exchangeOut.Contains(id))
                 {
                     exchangeIn.Add(id);
                     listBox借入.Items.Add(game.ElementAt(id).Value);
                 }
-                else
+                else if (exchangeIn.Contains(id))
                 {
                     MessageBox.Show("選取內容已存在");
+                }
+                else if (exchangeOut.Contains(id))
+                {
+                    MessageBox.Show("換出名單中已有此項目");
                 }
             }
             else if (listBox借出.Visible == true && exchangeOut.Count < 5)
             {
                 int id = (int)listView1.SelectedItems[0].Tag;                
 
-                if (!exchangeOut.Contains(id))
+                if (!exchangeIn.Contains(id) && !exchangeOut.Contains(id))
                 {
                     exchangeOut.Add(id);
                     listBox借出.Items.Add(game.ElementAt(id).Value);
                 }
-                else
+                else if (exchangeOut.Contains(id))
                 {
                     MessageBox.Show("選取內容已存在");
+                }
+                else if (exchangeIn.Contains(id))
+                {
+                    MessageBox.Show("換入名單中已有此項目");
                 }
             }
             else if (exchangeIn.Count == 5 || exchangeOut.Count == 5)
@@ -190,17 +198,15 @@ namespace midterm_project
 
             if (reader.Read())
             {
-                for (int i = 1; i <= reader.FieldCount - 2; i++)
+                for (int i = 1; i <= reader.FieldCount - 1; i++)
                 {
                     if (reader.IsDBNull(i) == false)
                     {
                         exchangeOut.Add((int)reader[i]);
                     }
                 }
-            }
-
-            reader.Close();
-            Sql.con.Close();
+            }           
+            reader.Close();            
 
             for (int i = 0; i < exchangeOut.Count; i++)
             {
@@ -209,6 +215,21 @@ namespace midterm_project
 
             progressBar1.Visible = true;
             SetProgress();
+
+            sql = "select face, mail from member where id = @id;";
+            cmd = new SqlCommand(sql, Sql.con);
+            cmd.Parameters.AddWithValue("@id", Account.Id);
+
+            reader = cmd.ExecuteReader();
+
+            if (reader.Read())
+            {
+                chk郵寄.Checked = (bool)reader["mail"];
+                chk面交.Checked = (bool)reader["face"];
+            }
+
+            reader.Close();
+            Sql.con.Close();
         }
 
         private void btn借入_Click(object sender, EventArgs e)
@@ -230,7 +251,7 @@ namespace midterm_project
 
             if (reader.Read())
             {
-                for (int i = 1; i <= reader.FieldCount - 2; i++)
+                for (int i = 1; i <= reader.FieldCount - 1; i++)
                 {
                     if (reader.IsDBNull(i) == false)
                     {
@@ -240,7 +261,6 @@ namespace midterm_project
             }
 
             reader.Close();
-            Sql.con.Close();
 
             for (int i = 0; i < exchangeIn.Count; i++)
             {
@@ -249,6 +269,21 @@ namespace midterm_project
 
             progressBar1.Visible = true;
             SetProgress();
+
+            sql = "select face, mail from member where id = @id;";
+            cmd = new SqlCommand(sql, Sql.con);
+            cmd.Parameters.AddWithValue("@id", Account.Id);
+
+            reader = cmd.ExecuteReader();
+
+            if (reader.Read())
+            {
+                chk郵寄.Checked = (bool)reader["mail"];
+                chk面交.Checked = (bool)reader["face"];
+            }
+
+            reader.Close();
+            Sql.con.Close();
         }
 
         private void btn清除全部_Click(object sender, EventArgs e)
@@ -277,13 +312,13 @@ namespace midterm_project
         private void btn套用_Click(object sender, EventArgs e)
         {
             Sql.Connect();
-                        
+            string sql;
+            SqlCommand cmd;
+            bool face = chk面交.Checked;
+            bool mail = chk郵寄.Checked;
 
             if (listBox借入.Visible)
             {
-                string sql;
-                SqlCommand cmd;
-
                 for (int i = 0; i < 5;)
                 {
                     if (i < exchangeIn.Count)
@@ -306,14 +341,9 @@ namespace midterm_project
                         i++;
                     }                    
                 }
-
-                MessageBox.Show("套用變更成功");
             }
             else if (listBox借出.Visible)
             {
-                string sql;
-                SqlCommand cmd;              
-
                 for (int i = 0; i < 5;)
                 {
                     if (i < exchangeOut.Count)
@@ -335,11 +365,19 @@ namespace midterm_project
 
                         i++;
                     }
-                }
-
-                Sql.con.Close();
-                MessageBox.Show("套用變更成功");
+                }                
             }
+
+            sql = "update member set face = @face, mail = @mail where id = @id;";
+            cmd = new SqlCommand(sql, Sql.con);
+            cmd.Parameters.AddWithValue("@face", face);
+            cmd.Parameters.AddWithValue("@mail", mail);
+            cmd.Parameters.AddWithValue("@id", Account.Id);
+
+            cmd.ExecuteNonQuery();
+
+            Sql.con.Close();
+            MessageBox.Show("套用變更成功");
         }
 
         private void btn移除所選_Click(object sender, EventArgs e)
@@ -395,5 +433,24 @@ namespace midterm_project
         {
             Application.Exit();
         }
+
+        private void chk郵寄_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chk郵寄.Checked == false && chk面交.Checked == false)
+            {
+                chk郵寄.Checked = true;
+                MessageBox.Show("請至少勾選一項");
+            }
+        }
+
+        private void chk面交_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chk郵寄.Checked == false && chk面交.Checked == false)
+            {
+                chk面交.Checked = true;
+                MessageBox.Show("請至少勾選一項");
+            }
+        }
+
     }
 }

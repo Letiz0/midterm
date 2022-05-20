@@ -30,7 +30,18 @@ namespace midterm_project
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Member));
+            this.btnBack = new System.Windows.Forms.Button();
             this.SuspendLayout();
+            // 
+            // btnBack
+            // 
+            this.btnBack.Image = ((System.Drawing.Image)(resources.GetObject("btnBack.Image")));
+            this.btnBack.Location = new System.Drawing.Point(646, 382);
+            this.btnBack.Name = "btnBack";
+            this.btnBack.Size = new System.Drawing.Size(54, 62);
+            this.btnBack.TabIndex = 12;
+            this.btnBack.UseVisualStyleBackColor = true;
+            this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
             // 
             // Member
             // 
@@ -38,6 +49,7 @@ namespace midterm_project
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.ClientSize = new System.Drawing.Size(712, 456);
+            this.Controls.Add(this.btnBack);
             this.Name = "Member";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Member";
@@ -48,5 +60,7 @@ namespace midterm_project
         }
 
         #endregion
+
+        private System.Windows.Forms.Button btnBack;
     }
 }

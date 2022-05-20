@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Data.SqlClient;
+using System.Data;
 
 namespace midterm_project
 {
@@ -22,6 +23,7 @@ namespace midterm_project
             connect = scsb.ToString();
             con = new SqlConnection(connect);
             con.Open();
-        }        
+        }       
+        
     }
 }

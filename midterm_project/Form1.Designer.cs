@@ -63,6 +63,8 @@ namespace midterm_project
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.btnForgetChange = new System.Windows.Forms.Button();
+            this.txt暱稱 = new System.Windows.Forms.TextBox();
+            this.label13 = new System.Windows.Forms.Label();
             this.groupBoxLogin.SuspendLayout();
             this.groupBoxSignup.SuspendLayout();
             this.groupBoxForget.SuspendLayout();
@@ -189,6 +191,8 @@ namespace midterm_project
             // groupBoxSignup
             // 
             this.groupBoxSignup.BackColor = System.Drawing.Color.Transparent;
+            this.groupBoxSignup.Controls.Add(this.txt暱稱);
+            this.groupBoxSignup.Controls.Add(this.label13);
             this.groupBoxSignup.Controls.Add(this.label12);
             this.groupBoxSignup.Controls.Add(this.txtSignPhone);
             this.groupBoxSignup.Controls.Add(this.txtVerify);
@@ -233,7 +237,7 @@ namespace midterm_project
             this.txtVerify.Font = new System.Drawing.Font("宋体", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtVerify.Location = new System.Drawing.Point(111, 365);
             this.txtVerify.Name = "txtVerify";
-            this.txtVerify.Size = new System.Drawing.Size(98, 31);
+            this.txtVerify.Size = new System.Drawing.Size(75, 31);
             this.txtVerify.TabIndex = 16;
             // 
             // label7
@@ -406,6 +410,23 @@ namespace midterm_project
             this.btnForgetChange.Visible = false;
             this.btnForgetChange.Click += new System.EventHandler(this.btnForgetChange_Click);
             // 
+            // txt暱稱
+            // 
+            this.txt暱稱.Font = new System.Drawing.Font("宋体", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txt暱稱.Location = new System.Drawing.Point(252, 365);
+            this.txt暱稱.Name = "txt暱稱";
+            this.txt暱稱.Size = new System.Drawing.Size(82, 31);
+            this.txt暱稱.TabIndex = 20;
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(194, 370);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(54, 21);
+            this.label13.TabIndex = 19;
+            this.label13.Text = "暱稱";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 21F);
@@ -413,15 +434,15 @@ namespace midterm_project
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.ClientSize = new System.Drawing.Size(400, 705);
-            this.Controls.Add(this.btnForgetChange);
-            this.Controls.Add(this.btnLogin);
-            this.Controls.Add(this.btnSignup);
-            this.Controls.Add(this.btnSendEmail);
+            this.Controls.Add(this.groupBoxSignup);
             this.Controls.Add(this.btnForget);
             this.Controls.Add(this.btnConfirmSign);
             this.Controls.Add(this.groupBoxLogin);
-            this.Controls.Add(this.groupBoxSignup);
             this.Controls.Add(this.groupBoxForget);
+            this.Controls.Add(this.btnSignup);
+            this.Controls.Add(this.btnSendEmail);
+            this.Controls.Add(this.btnForgetChange);
+            this.Controls.Add(this.btnLogin);
             this.Font = new System.Drawing.Font("新宋体", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
@@ -474,6 +495,8 @@ namespace midterm_project
         private System.Windows.Forms.Button btnForgetChange;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.TextBox txtSignPhone;
+        private System.Windows.Forms.TextBox txt暱稱;
+        private System.Windows.Forms.Label label13;
     }
 }
 
