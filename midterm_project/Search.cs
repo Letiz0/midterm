@@ -11,16 +11,162 @@ using System.Data.SqlClient;
 
 namespace midterm_project
 {
-    public partial class Search : Form
+    public partial class btn提交申請 : Form
     {
-        public Search()
+        public btn提交申請()
         {
             InitializeComponent();
-        } 
+        }
 
+        Dictionary<int, string> game = new Dictionary<int, string>();
+        List<int> opGameIn = new List<int>();
+        List<int> opGameOut = new List<int>();
+
+        enum radio
+        {
+            郵寄 = 1,
+            面交 = 2,
+            不限 = 3
+        }
+
+        radio radioBtn
+        {
+            get
+            {
+                if (radioButton面交.Checked == true)
+                {
+                    return radio.面交;
+                }
+                else if (radioButton郵寄.Checked == true)
+                {
+                    return radio.郵寄;
+                }
+                else
+                {
+                    return radio.不限;
+                }
+            }
+        }
+
+        string Search
+        {
+            get
+            {
+                if (txt搜尋.Text == "依地區搜尋")
+                {
+                    return "";
+                }
+                else
+                {
+                    return txt搜尋.Text;
+                }
+            }
+        }
+        void DataFilter()
+        {
+            DataView view = new DataView(dataTable);
+
+            switch (radioBtn)
+            {
+                case radio.郵寄:                    
+                    view.RowFilter = string.Format("可郵寄 = 1 and 地區 like '%{0}%'", Search);                    
+                    break;
+                case radio.面交:
+                    view.RowFilter = string.Format("可面交 = 1 and 地區 like '%{0}%'", Search);
+                    break;
+                case radio.不限:
+                    view.RowFilter = string.Format("(可郵寄 = 1 or 可面交 = 1) and 地區 like '%{0}%'", Search);
+                    break;
+            }
+
+            dataGridView1.DataSource = view;
+
+            listView自己.Clear();
+            listView對方.Clear();
+            dataGridView1.ClearSelection();
+        }
+
+        void GetOpGameIn()
+        {
+            opGameIn.Clear();
+
+            int id = (int)dataGridView1.SelectedRows[0].Cells[0].Value;
+            Sql.Connect();
+            SqlCommand cmd = new SqlCommand("", Sql.con);
+            cmd.CommandText += "select in_0, in_1, in_2, in_3, in_4 from exchange_in where member_id = @id;";
+            cmd.Parameters.AddWithValue("@id", id);
+
+            SqlDataReader reader = cmd.ExecuteReader();
+
+            if (reader.Read())
+            {
+                for (int i = 0; i < 5; i++)
+                {
+                    if (reader[i] != DBNull.Value)
+                    {
+                        opGameIn.Add((int)reader[i]);
+                    }
+                }
+            }
+
+            reader.Close();
+            Sql.con.Close();
+        }
+
+        void GetOpGameOut()
+        {
+            opGameOut.Clear();
+
+            int id = (int)dataGridView1.SelectedRows[0].Cells[0].Value;
+            Sql.Connect();
+            SqlCommand cmd = new SqlCommand("", Sql.con);
+            cmd.CommandText += "select out_0, out_1, out_2, out_3, out_4 from exchange_out where member_id = @id;";
+            cmd.Parameters.AddWithValue("@id", id);
+
+            SqlDataReader reader = cmd.ExecuteReader();
+
+            if (reader.Read())
+            {
+                for (int i = 0; i < 5; i++)
+                {
+                    if (reader[i] != DBNull.Value)
+                    {
+                        opGameOut.Add((int)reader[i]);
+                    }
+                }
+            }
+
+            reader.Close();
+            Sql.con.Close();
+        }
+
+        void LoadPic()
+        {
+            Sql.Connect();
+
+            string sql = "select * from game;";
+            SqlCommand cmd = new SqlCommand(sql, Sql.con);
+            SqlDataReader reader = cmd.ExecuteReader();
+
+            string fileName;
+
+            while (reader.Read())
+            {
+                fileName = @"images\" + (string)reader["pic"];
+                game.Add((int)reader["id"], (string)reader["name"]);
+                imageList1.Images.Add(Image.FromFile(fileName));
+            }
+
+            reader.Close();
+            Sql.con.Close();
+        }
+
+        DataTable dataTable;
 
         private void Search_Load(object sender, EventArgs e)
         {
+            LoadPic();
+
             Filter.GetListIn();
             Filter.GetListOut();
             Filter.GetListOpidOut();
@@ -28,9 +174,31 @@ namespace midterm_project
             Filter.GetResuldId();
 
             Sql.Connect();
-            string sql = "select email as 信箱, ";
+
+            string[] parameters = new string[Filter.listResultId.Count];            
+            
+            SqlCommand cmd = new SqlCommand("", Sql.con);
+
+            for (int i = 0; i < parameters.Length; i++)
+            {
+                parameters[i] = string.Format("@id{0}", i);
+                cmd.Parameters.AddWithValue(parameters[i], Filter.listResultId[i]);
+            }
+
+            cmd.CommandText += string.Format("select id as id, nickname as 暱稱, location as 地區, face as 可面交, mail as 可郵寄, success as 交易次數, lastupdate as 最後更新時間 from member where id in ({0}) order by lastupdate desc", string.Join(",", parameters));
+
+            dataTable = new DataTable();
+            SqlDataAdapter adapter = new SqlDataAdapter();
+            adapter.SelectCommand = cmd;
+            adapter.Fill(dataTable);
+            adapter.Dispose();
+            Sql.con.Close();
+
+            dataGridView1.DataSource = dataTable;
+            dataGridView1.ClearSelection();
+
         }
-        
+
 
         private void Search_FormClosing(object sender, FormClosingEventArgs e)
         {
@@ -43,9 +211,85 @@ namespace midterm_project
             GlobalVar.formMain.Show();
         }
 
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void txt搜尋_Click(object sender, EventArgs e)
+        {
+            txt搜尋.Text = "";
+            txt搜尋.ForeColor = Color.Black;
+            DataFilter();
+        }
+
+        private void btn搜尋_Click(object sender, EventArgs e)
+        {
+            DataFilter();
+        }
+
+        private void button提交申請_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void txt搜尋_TextChanged(object sender, EventArgs e)
+        {
+            if (txt搜尋.Text == "")
+            {
+                dataGridView1.DataSource = dataTable;
+            }
+        }
+
+        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex != -1)
+            {
+                listView對方.Clear();
+                listView自己.Clear();
+                GetOpGameIn();
+                GetOpGameOut();
+                panel交換.Visible = true;
+
+                List<int> opResult = new List<int>(opGameOut.Intersect(Filter.listIn));
+
+                for (int i = 0; i < opResult.Count; i++)
+                {
+                    ListViewItem item = new ListViewItem();
+                    item.Text = game.ElementAt(opResult[i]).Value;
+                    item.ImageIndex = game.ElementAt(opResult[i]).Key;
+
+                    listView對方.Items.Add(item);
+                }
+
+                List<int> selfResult = new List<int>(opGameIn.Intersect(Filter.listOut));
+
+                for (int i = 0; i < selfResult.Count; i++)
+                {
+                    ListViewItem item = new ListViewItem();
+                    item.Text = game.ElementAt(selfResult[i]).Value;
+                    item.ImageIndex = game.ElementAt(selfResult[i]).Key;
+
+                    listView自己.Items.Add(item);
+                }
+            }            
+        }
+
+        private void dataGridView1_Sorted(object sender, EventArgs e)
+        {
+            listView自己.Clear();
+            listView對方.Clear();
+            dataGridView1.ClearSelection();
+        }
+
+        private void radioButton面交_CheckedChanged(object sender, EventArgs e)
+        {
+            DataFilter();
+        }
+
+        private void radioButton郵寄_CheckedChanged(object sender, EventArgs e)
+        {
+            DataFilter();
+        }
+
+        private void radioButton不限_CheckedChanged(object sender, EventArgs e)
+        {
+            DataFilter();
         }
     }
 }

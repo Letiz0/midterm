@@ -50,7 +50,7 @@ namespace midterm_project
         private void btnSearch_Click(object sender, EventArgs e)
         {
             Hide();
-            GlobalVar.formSearch = new Search();
+            GlobalVar.formSearch = new btn提交申請();
             GlobalVar.formSearch.Show();
         }
     }

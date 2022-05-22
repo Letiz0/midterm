@@ -22,7 +22,7 @@ namespace midterm_project
         
         private void Form1_Load(object sender, EventArgs e)
         {
-            
+
         }
 
 
@@ -70,6 +70,7 @@ namespace midterm_project
             btnSignup.Visible = false;
             btnLogin.Visible = false;
             groupBoxLogin.Visible = false;
+            btnForget.Visible = false;
         }
 
         private void btnSignup_Click(object sender, EventArgs e)
@@ -97,7 +98,7 @@ namespace midterm_project
             {
                 string sign = "insert into member (email, password, location, phone, face, mail, success, nickname) values (@email, @password, @location, @phone, 1, 1, 0, @nickname);";
                 SqlCommand cmd = new SqlCommand(sign, Sql.con);
-                
+
                 cmd.Parameters.AddWithValue("@email", txtSignEmail.Text);
                 cmd.Parameters.AddWithValue("@password", txtSignPW.Text);
                 cmd.Parameters.AddWithValue("@location", txtSignLocation.Text);
@@ -105,6 +106,8 @@ namespace midterm_project
                 cmd.Parameters.AddWithValue("@nickname", txt暱稱.Text);
 
                 cmd.ExecuteNonQuery();
+
+                
 
                 sign = "insert into exchange_in (member_id) values ((select id from member where email = @email));";
                 cmd = new SqlCommand(sign, Sql.con);

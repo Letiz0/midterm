@@ -67,7 +67,7 @@ namespace midterm_project
             this.btnPublish.Name = "btnPublish";
             this.btnPublish.Size = new System.Drawing.Size(163, 74);
             this.btnPublish.TabIndex = 2;
-            this.btnPublish.Text = "刊登管理";
+            this.btnPublish.Text = "交換管理";
             this.btnPublish.UseVisualStyleBackColor = true;
             this.btnPublish.Click += new System.EventHandler(this.btnPublish_Click);
             // 
@@ -78,7 +78,7 @@ namespace midterm_project
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(163, 74);
             this.btnSearch.TabIndex = 3;
-            this.btnSearch.Text = "搜尋功能";
+            this.btnSearch.Text = "自動配對";
             this.btnSearch.UseVisualStyleBackColor = true;
             this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 

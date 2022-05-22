@@ -43,6 +43,8 @@ namespace midterm_project
             this.txtSignEmail = new System.Windows.Forms.TextBox();
             this.groupBoxLogin = new System.Windows.Forms.GroupBox();
             this.groupBoxSignup = new System.Windows.Forms.GroupBox();
+            this.txt暱稱 = new System.Windows.Forms.TextBox();
+            this.label13 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.txtSignPhone = new System.Windows.Forms.TextBox();
             this.txtVerify = new System.Windows.Forms.TextBox();
@@ -63,8 +65,6 @@ namespace midterm_project
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.btnForgetChange = new System.Windows.Forms.Button();
-            this.txt暱稱 = new System.Windows.Forms.TextBox();
-            this.label13 = new System.Windows.Forms.Label();
             this.groupBoxLogin.SuspendLayout();
             this.groupBoxSignup.SuspendLayout();
             this.groupBoxForget.SuspendLayout();
@@ -212,6 +212,23 @@ namespace midterm_project
             this.groupBoxSignup.TabStop = false;
             this.groupBoxSignup.Text = "帳號註冊";
             this.groupBoxSignup.Visible = false;
+            // 
+            // txt暱稱
+            // 
+            this.txt暱稱.Font = new System.Drawing.Font("宋体", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txt暱稱.Location = new System.Drawing.Point(252, 365);
+            this.txt暱稱.Name = "txt暱稱";
+            this.txt暱稱.Size = new System.Drawing.Size(82, 31);
+            this.txt暱稱.TabIndex = 20;
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(194, 370);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(54, 21);
+            this.label13.TabIndex = 19;
+            this.label13.Text = "暱稱";
             // 
             // label12
             // 
@@ -409,23 +426,6 @@ namespace midterm_project
             this.btnForgetChange.UseVisualStyleBackColor = true;
             this.btnForgetChange.Visible = false;
             this.btnForgetChange.Click += new System.EventHandler(this.btnForgetChange_Click);
-            // 
-            // txt暱稱
-            // 
-            this.txt暱稱.Font = new System.Drawing.Font("宋体", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt暱稱.Location = new System.Drawing.Point(252, 365);
-            this.txt暱稱.Name = "txt暱稱";
-            this.txt暱稱.Size = new System.Drawing.Size(82, 31);
-            this.txt暱稱.TabIndex = 20;
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(194, 370);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(54, 21);
-            this.label13.TabIndex = 19;
-            this.label13.Text = "暱稱";
             // 
             // Form1
             // 

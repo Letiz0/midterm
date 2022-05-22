@@ -10,7 +10,7 @@ namespace midterm_project
     {
         public static Form1 form1;
         public static FormMain formMain;
-        public static Search formSearch;
+        public static btn提交申請 formSearch;
         public static Publish formPublish;
         public static Member formMember;
     }

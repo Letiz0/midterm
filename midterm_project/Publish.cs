@@ -368,11 +368,12 @@ namespace midterm_project
                 }                
             }
 
-            sql = "update member set face = @face, mail = @mail where id = @id;";
+            sql = "update member set face = @face, mail = @mail, lastupdate = @update where id = @id;";
             cmd = new SqlCommand(sql, Sql.con);
             cmd.Parameters.AddWithValue("@face", face);
             cmd.Parameters.AddWithValue("@mail", mail);
             cmd.Parameters.AddWithValue("@id", Account.Id);
+            cmd.Parameters.AddWithValue("@update", DateTime.Now.ToString("yyyy-MM-dd HH:mm"));
 
             cmd.ExecuteNonQuery();
 
