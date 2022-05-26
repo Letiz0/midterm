@@ -192,11 +192,12 @@ namespace midterm_project
             adapter.SelectCommand = cmd;
             adapter.Fill(dataTable);
             adapter.Dispose();
-            Sql.con.Close();
+            
 
             dataGridView1.DataSource = dataTable;
-            dataGridView1.ClearSelection();
+            dataGridView1.ClearSelection();            
 
+            Sql.con.Close();
         }
 
 
@@ -225,7 +226,51 @@ namespace midterm_project
 
         private void button提交申請_Click(object sender, EventArgs e)
         {
+            if (listView自己.SelectedItems.Count > 0 && listView對方.SelectedItems.Count >0)
+            {
+                Sql.Connect();
+                SqlCommand cmd = new SqlCommand("", Sql.con);
 
+                cmd.CommandText = "insert into [order] (id_invite, id_received, invite_0, invite_1, invite_2, invite_3, invite_4, received_0, received_1, received_2, received_3, received_4, status) values(@id_invite, @id_received, @invite_0, @invite_1, @invite_2, @invite_3, @invite_4, @received_0, @received_1, @received_2, @received_3, @received_4, @status)";
+                cmd.Parameters.AddWithValue("@id_received", dataGridView1.SelectedRows[0].Cells["id"].Value);
+                cmd.Parameters.AddWithValue("@status", GlobalVar.orderStatus.等待接受);
+                cmd.Parameters.AddWithValue("@id_invite", Account.Id);
+                for (int i = 0; i < 5;)
+                {
+                    if (i < listView自己.SelectedItems.Count)
+                    {
+                        cmd.Parameters.AddWithValue(string.Format("@invite_{0}", i), listView自己.SelectedItems[i].Tag);
+                    }
+                    else
+                    {
+                        cmd.Parameters.AddWithValue(string.Format("@invite_{0}", i), DBNull.Value);
+                    }
+
+                    i++;
+                }
+                for (int i = 0; i < 5;)
+                {
+                    if (i < listView對方.SelectedItems.Count)
+                    {
+                        cmd.Parameters.AddWithValue(string.Format("@received_{0}", i), listView對方.SelectedItems[i].Tag);
+                    }
+                    else
+                    {
+                        cmd.Parameters.AddWithValue(string.Format("@received_{0}", i), DBNull.Value);
+                    }
+
+                    i++;
+                }
+
+                cmd.ExecuteNonQuery();
+                MessageBox.Show("成功提交邀請");
+                Sql.con.Close();             
+            }
+
+            else
+            {
+                MessageBox.Show("請至少各選一項");
+            }
         }
 
         private void txt搜尋_TextChanged(object sender, EventArgs e)
@@ -236,6 +281,8 @@ namespace midterm_project
             }
         }
 
+        List<int> opResult;
+        List<int> selfResult;
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex != -1)
@@ -246,24 +293,26 @@ namespace midterm_project
                 GetOpGameOut();
                 panel交換.Visible = true;
 
-                List<int> opResult = new List<int>(opGameOut.Intersect(Filter.listIn));
+                opResult = new List<int>(opGameOut.Intersect(Filter.listIn));
 
                 for (int i = 0; i < opResult.Count; i++)
                 {
                     ListViewItem item = new ListViewItem();
                     item.Text = game.ElementAt(opResult[i]).Value;
                     item.ImageIndex = game.ElementAt(opResult[i]).Key;
+                    item.Tag = opResult[i];
 
                     listView對方.Items.Add(item);
                 }
 
-                List<int> selfResult = new List<int>(opGameIn.Intersect(Filter.listOut));
+                selfResult = new List<int>(opGameIn.Intersect(Filter.listOut));
 
                 for (int i = 0; i < selfResult.Count; i++)
                 {
                     ListViewItem item = new ListViewItem();
                     item.Text = game.ElementAt(selfResult[i]).Value;
                     item.ImageIndex = game.ElementAt(selfResult[i]).Key;
+                    item.Tag = selfResult[i];
 
                     listView自己.Items.Add(item);
                 }
@@ -290,6 +339,6 @@ namespace midterm_project
         private void radioButton不限_CheckedChanged(object sender, EventArgs e)
         {
             DataFilter();
-        }
+        }        
     }
 }

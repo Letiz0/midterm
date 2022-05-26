@@ -11,11 +11,5 @@ namespace midterm_project
         public static string Email { get; set; }
         public static string Password { get; set; }
         public static int Id { get; set; }
-        
-
-
-
-
-
     }
 }
