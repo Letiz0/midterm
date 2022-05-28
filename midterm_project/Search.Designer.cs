@@ -31,7 +31,7 @@ namespace midterm_project
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(btn提交申請));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.btnBack = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
@@ -43,6 +43,7 @@ namespace midterm_project
             this.btn搜尋 = new System.Windows.Forms.Button();
             this.txt搜尋 = new System.Windows.Forms.TextBox();
             this.panel交換 = new System.Windows.Forms.Panel();
+            this.btn備註 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.button提交申請 = new System.Windows.Forms.Button();
@@ -74,14 +75,14 @@ namespace midterm_project
             this.dataGridView1.MultiSelect = false;
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView1.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.RowHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridView1.RowTemplate.Height = 24;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView1.Size = new System.Drawing.Size(651, 367);
@@ -190,6 +191,7 @@ namespace midterm_project
             // panel交換
             // 
             this.panel交換.BackColor = System.Drawing.Color.Transparent;
+            this.panel交換.Controls.Add(this.btn備註);
             this.panel交換.Controls.Add(this.label1);
             this.panel交換.Controls.Add(this.label3);
             this.panel交換.Controls.Add(this.button提交申請);
@@ -200,6 +202,17 @@ namespace midterm_project
             this.panel交換.Size = new System.Drawing.Size(686, 526);
             this.panel交換.TabIndex = 25;
             this.panel交換.Visible = false;
+            // 
+            // btn備註
+            // 
+            this.btn備註.Font = new System.Drawing.Font("新宋体", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn備註.Location = new System.Drawing.Point(166, 226);
+            this.btn備註.Name = "btn備註";
+            this.btn備註.Size = new System.Drawing.Size(130, 47);
+            this.btn備註.TabIndex = 29;
+            this.btn備註.Text = "輸入備註";
+            this.btn備註.UseVisualStyleBackColor = true;
+            this.btn備註.Click += new System.EventHandler(this.btn備註_Click);
             // 
             // label1
             // 
@@ -243,7 +256,7 @@ namespace midterm_project
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
-            this.ClientSize = new System.Drawing.Size(1358, 542);
+            this.ClientSize = new System.Drawing.Size(675, 542);
             this.Controls.Add(this.btnBack);
             this.Controls.Add(this.panel交換);
             this.Controls.Add(this.txt搜尋);
@@ -253,6 +266,7 @@ namespace midterm_project
             this.Controls.Add(this.radioButton面交);
             this.Controls.Add(this.dataGridView1);
             this.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(5);
             this.Name = "btn提交申請";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -283,5 +297,6 @@ namespace midterm_project
         private System.Windows.Forms.Button button提交申請;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button btn備註;
     }
 }

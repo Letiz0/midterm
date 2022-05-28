@@ -98,24 +98,27 @@ namespace midterm_project
             // 
             // btn借入
             // 
+            this.btn借入.BackColor = System.Drawing.Color.WhiteSmoke;
             this.btn借入.Font = new System.Drawing.Font("新宋体", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn借入.Location = new System.Drawing.Point(545, 503);
             this.btn借入.Name = "btn借入";
             this.btn借入.Size = new System.Drawing.Size(136, 55);
             this.btn借入.TabIndex = 1;
-            this.btn借入.Text = "換入管理";
-            this.btn借入.UseVisualStyleBackColor = true;
+            this.btn借入.Text = "換入清單";
+            this.btn借入.UseVisualStyleBackColor = false;
             this.btn借入.Click += new System.EventHandler(this.btn借入_Click);
             // 
             // btn借出
             // 
+            this.btn借出.BackColor = System.Drawing.Color.WhiteSmoke;
             this.btn借出.Font = new System.Drawing.Font("新宋体", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn借出.ForeColor = System.Drawing.Color.Black;
             this.btn借出.Location = new System.Drawing.Point(381, 503);
             this.btn借出.Name = "btn借出";
             this.btn借出.Size = new System.Drawing.Size(136, 55);
             this.btn借出.TabIndex = 0;
-            this.btn借出.Text = "換出管理";
-            this.btn借出.UseVisualStyleBackColor = true;
+            this.btn借出.Text = "換出清單";
+            this.btn借出.UseVisualStyleBackColor = false;
             this.btn借出.Click += new System.EventHandler(this.btn借出_Click);
             // 
             // btn移除所選
@@ -258,7 +261,7 @@ namespace midterm_project
             this.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
             this.BackColor = System.Drawing.Color.PapayaWhip;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
-            this.ClientSize = new System.Drawing.Size(1037, 581);
+            this.ClientSize = new System.Drawing.Size(724, 581);
             this.Controls.Add(this.btnBack);
             this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.pictureBox1);

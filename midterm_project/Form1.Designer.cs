@@ -119,7 +119,7 @@ namespace midterm_project
             this.txtPW.Name = "txtPW";
             this.txtPW.PasswordChar = '*';
             this.txtPW.Size = new System.Drawing.Size(223, 31);
-            this.txtPW.TabIndex = 4;
+            this.txtPW.TabIndex = 3;
             this.txtPW.Text = "5566";
             // 
             // label1
@@ -147,7 +147,7 @@ namespace midterm_project
             this.txtSignPW.Name = "txtSignPW";
             this.txtSignPW.PasswordChar = '*';
             this.txtSignPW.Size = new System.Drawing.Size(223, 31);
-            this.txtSignPW.TabIndex = 7;
+            this.txtSignPW.TabIndex = 11;
             // 
             // txtSignCheckPW
             // 
@@ -156,7 +156,7 @@ namespace midterm_project
             this.txtSignCheckPW.Name = "txtSignCheckPW";
             this.txtSignCheckPW.PasswordChar = '*';
             this.txtSignCheckPW.Size = new System.Drawing.Size(223, 31);
-            this.txtSignCheckPW.TabIndex = 8;
+            this.txtSignCheckPW.TabIndex = 12;
             // 
             // txtSignLocation
             // 
@@ -164,7 +164,7 @@ namespace midterm_project
             this.txtSignLocation.Location = new System.Drawing.Point(111, 299);
             this.txtSignLocation.Name = "txtSignLocation";
             this.txtSignLocation.Size = new System.Drawing.Size(223, 31);
-            this.txtSignLocation.TabIndex = 9;
+            this.txtSignLocation.TabIndex = 14;
             // 
             // txtSignEmail
             // 
@@ -219,7 +219,7 @@ namespace midterm_project
             this.txt暱稱.Location = new System.Drawing.Point(252, 365);
             this.txt暱稱.Name = "txt暱稱";
             this.txt暱稱.Size = new System.Drawing.Size(82, 31);
-            this.txt暱稱.TabIndex = 20;
+            this.txt暱稱.TabIndex = 16;
             // 
             // label13
             // 
@@ -247,7 +247,7 @@ namespace midterm_project
             this.txtSignPhone.Name = "txtSignPhone";
             this.txtSignPhone.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.txtSignPhone.Size = new System.Drawing.Size(223, 31);
-            this.txtSignPhone.TabIndex = 17;
+            this.txtSignPhone.TabIndex = 13;
             // 
             // txtVerify
             // 
@@ -255,7 +255,7 @@ namespace midterm_project
             this.txtVerify.Location = new System.Drawing.Point(111, 365);
             this.txtVerify.Name = "txtVerify";
             this.txtVerify.Size = new System.Drawing.Size(75, 31);
-            this.txtVerify.TabIndex = 16;
+            this.txtVerify.TabIndex = 15;
             // 
             // label7
             // 
@@ -352,7 +352,7 @@ namespace midterm_project
             this.txtForgetConfirmPW.Name = "txtForgetConfirmPW";
             this.txtForgetConfirmPW.PasswordChar = '*';
             this.txtForgetConfirmPW.Size = new System.Drawing.Size(223, 31);
-            this.txtForgetConfirmPW.TabIndex = 9;
+            this.txtForgetConfirmPW.TabIndex = 7;
             // 
             // label11
             // 
@@ -370,7 +370,7 @@ namespace midterm_project
             this.txtForgetNewPW.Name = "txtForgetNewPW";
             this.txtForgetNewPW.PasswordChar = '*';
             this.txtForgetNewPW.Size = new System.Drawing.Size(223, 31);
-            this.txtForgetNewPW.TabIndex = 7;
+            this.txtForgetNewPW.TabIndex = 6;
             // 
             // label10
             // 
@@ -387,7 +387,7 @@ namespace midterm_project
             this.txtForgetVerify.Location = new System.Drawing.Point(112, 302);
             this.txtForgetVerify.Name = "txtForgetVerify";
             this.txtForgetVerify.Size = new System.Drawing.Size(101, 31);
-            this.txtForgetVerify.TabIndex = 4;
+            this.txtForgetVerify.TabIndex = 8;
             // 
             // txtForgetEmail
             // 
@@ -395,7 +395,7 @@ namespace midterm_project
             this.txtForgetEmail.Location = new System.Drawing.Point(112, 47);
             this.txtForgetEmail.Name = "txtForgetEmail";
             this.txtForgetEmail.Size = new System.Drawing.Size(223, 31);
-            this.txtForgetEmail.TabIndex = 2;
+            this.txtForgetEmail.TabIndex = 5;
             // 
             // label8
             // 
@@ -434,15 +434,15 @@ namespace midterm_project
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.ClientSize = new System.Drawing.Size(400, 705);
-            this.Controls.Add(this.groupBoxSignup);
             this.Controls.Add(this.btnForget);
             this.Controls.Add(this.btnConfirmSign);
-            this.Controls.Add(this.groupBoxLogin);
-            this.Controls.Add(this.groupBoxForget);
             this.Controls.Add(this.btnSignup);
             this.Controls.Add(this.btnSendEmail);
             this.Controls.Add(this.btnForgetChange);
             this.Controls.Add(this.btnLogin);
+            this.Controls.Add(this.groupBoxForget);
+            this.Controls.Add(this.groupBoxSignup);
+            this.Controls.Add(this.groupBoxLogin);
             this.Font = new System.Drawing.Font("新宋体", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);

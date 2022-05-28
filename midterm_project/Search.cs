@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
+using Microsoft.VisualBasic;
 
 namespace midterm_project
 {
@@ -173,31 +174,34 @@ namespace midterm_project
             Filter.GetListOpidIn();
             Filter.GetResuldId();
 
-            Sql.Connect();
-
-            string[] parameters = new string[Filter.listResultId.Count];            
-            
-            SqlCommand cmd = new SqlCommand("", Sql.con);
-
-            for (int i = 0; i < parameters.Length; i++)
+            if (Filter.listResultId.Count > 0)
             {
-                parameters[i] = string.Format("@id{0}", i);
-                cmd.Parameters.AddWithValue(parameters[i], Filter.listResultId[i]);
+                Sql.Connect();
+
+                string[] parameters = new string[Filter.listResultId.Count];
+
+                SqlCommand cmd = new SqlCommand("", Sql.con);
+
+                for (int i = 0; i < parameters.Length; i++)
+                {
+                    parameters[i] = string.Format("@id{0}", i);
+                    cmd.Parameters.AddWithValue(parameters[i], Filter.listResultId[i]);
+                }
+
+                cmd.CommandText += string.Format("select id as id, nickname as 暱稱, location as 地區, face as 可面交, mail as 可郵寄, success as 交易次數, lastupdate as 最後更新時間 from member where id in ({0}) order by lastupdate desc", string.Join(",", parameters));
+
+                dataTable = new DataTable();
+                SqlDataAdapter adapter = new SqlDataAdapter();
+                adapter.SelectCommand = cmd;
+                adapter.Fill(dataTable);
+                adapter.Dispose();
+
+
+                dataGridView1.DataSource = dataTable;
+                dataGridView1.ClearSelection();
+
+                Sql.con.Close(); 
             }
-
-            cmd.CommandText += string.Format("select id as id, nickname as 暱稱, location as 地區, face as 可面交, mail as 可郵寄, success as 交易次數, lastupdate as 最後更新時間 from member where id in ({0}) order by lastupdate desc", string.Join(",", parameters));
-
-            dataTable = new DataTable();
-            SqlDataAdapter adapter = new SqlDataAdapter();
-            adapter.SelectCommand = cmd;
-            adapter.Fill(dataTable);
-            adapter.Dispose();
-            
-
-            dataGridView1.DataSource = dataTable;
-            dataGridView1.ClearSelection();            
-
-            Sql.con.Close();
         }
 
 
@@ -231,10 +235,11 @@ namespace midterm_project
                 Sql.Connect();
                 SqlCommand cmd = new SqlCommand("", Sql.con);
 
-                cmd.CommandText = "insert into [order] (id_invite, id_received, invite_0, invite_1, invite_2, invite_3, invite_4, received_0, received_1, received_2, received_3, received_4, status) values(@id_invite, @id_received, @invite_0, @invite_1, @invite_2, @invite_3, @invite_4, @received_0, @received_1, @received_2, @received_3, @received_4, @status)";
+                cmd.CommandText = "insert into [order] (id_invite, id_received, invite_0, invite_1, invite_2, invite_3, invite_4, received_0, received_1, received_2, received_3, received_4, status, note) values(@id_invite, @id_received, @invite_0, @invite_1, @invite_2, @invite_3, @invite_4, @received_0, @received_1, @received_2, @received_3, @received_4, @status, @note)";
                 cmd.Parameters.AddWithValue("@id_received", dataGridView1.SelectedRows[0].Cells["id"].Value);
                 cmd.Parameters.AddWithValue("@status", GlobalVar.orderStatus.等待接受);
                 cmd.Parameters.AddWithValue("@id_invite", Account.Id);
+                cmd.Parameters.AddWithValue("@note", note);
                 for (int i = 0; i < 5;)
                 {
                     if (i < listView自己.SelectedItems.Count)
@@ -262,6 +267,7 @@ namespace midterm_project
                     i++;
                 }
 
+                note = "(無)";
                 cmd.ExecuteNonQuery();
                 MessageBox.Show("成功提交邀請");
                 Sql.con.Close();             
@@ -284,9 +290,12 @@ namespace midterm_project
         List<int> opResult;
         List<int> selfResult;
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
+        {   
             if (e.RowIndex != -1)
             {
+                Size = new Size(1374, 581);
+                CenterToScreen();
+
                 listView對方.Clear();
                 listView自己.Clear();
                 GetOpGameIn();
@@ -339,6 +348,18 @@ namespace midterm_project
         private void radioButton不限_CheckedChanged(object sender, EventArgs e)
         {
             DataFilter();
-        }        
+        }
+
+        string note = "(無)";
+        private void btn備註_Click(object sender, EventArgs e)
+        {
+            note = Interaction.InputBox("請輸入備註(限30字)", "備註", note, -1, -1);
+            if (note.Length >= 30)
+            {
+                MessageBox.Show("最多輸入30字");
+                note = "(無)";
+            }
+        }
+
     }
 }

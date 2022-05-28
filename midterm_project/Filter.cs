@@ -69,58 +69,64 @@ namespace midterm_project
         public static void GetListOpidOut()
         {
             listOpidOut.Clear();
-            
-            Sql.Connect();
 
-            var parameters = new string[listIn.Count];
-            var cmd = new SqlCommand("", Sql.con);
-
-            for (int i = 0; i < listIn.Count; i++)
+            if (listIn.Count > 0)
             {
-                parameters[i] = string.Format("@in{0}", i);
-                cmd.Parameters.AddWithValue(parameters[i], listIn[i]);
+                Sql.Connect();
+
+                var parameters = new string[listIn.Count];
+                var cmd = new SqlCommand("", Sql.con);
+
+                for (int i = 0; i < listIn.Count; i++)
+                {
+                    parameters[i] = string.Format("@in{0}", i);
+                    cmd.Parameters.AddWithValue(parameters[i], listIn[i]);
+                }
+
+                cmd.CommandText += string.Format("select member_id from exchange_out where out_0 in ({0}) or out_1 in ({0}) or out_2 in ({0}) or out_3 in ({0}) or out_4 in ({0});", string.Join(", ", parameters));
+
+                SqlDataReader reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    listOpidOut.Add((int)reader["member_id"]);
+                }
+
+                reader.Close();
+                Sql.con.Close();
             }
-
-            cmd.CommandText += string.Format("select member_id from exchange_out where out_0 in ({0}) or out_1 in ({0}) or out_2 in ({0}) or out_3 in ({0}) or out_4 in ({0});", string.Join(", ", parameters));
-
-            SqlDataReader reader = cmd.ExecuteReader();
-
-            while (reader.Read())
-            {
-                listOpidOut.Add((int)reader["member_id"]);
-            }
-
-            reader.Close();
-            Sql.con.Close();
         }
 
         public static void GetListOpidIn()
         {
             listOpidIn.Clear();
 
-            Sql.Connect();
-
-            var parameters = new string[listOut.Count];
-            var cmd = new SqlCommand("", Sql.con);
-
-            for (int i = 0; i < listOut.Count; i++)
+            if (listOut.Count > 0)
             {
-                parameters[i] = string.Format("@out{0}", i);
-                cmd.Parameters.AddWithValue(parameters[i], listOut[i]);
+                Sql.Connect();
+
+                var parameters = new string[listOut.Count];
+                var cmd = new SqlCommand("", Sql.con);
+
+                for (int i = 0; i < listOut.Count; i++)
+                {
+                    parameters[i] = string.Format("@out{0}", i);
+                    cmd.Parameters.AddWithValue(parameters[i], listOut[i]);
+                }
+
+                cmd.CommandText += string.Format("select member_id from exchange_in where in_0 in ({0}) or in_1 in ({0}) or in_2 in ({0}) or in_3 in ({0}) or in_4 in ({0});", string.Join(", ", parameters));
+
+                SqlDataReader reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    listOpidIn.Add((int)reader["member_id"]);
+                }
+
+
+                reader.Close();
+                Sql.con.Close(); 
             }
-
-            cmd.CommandText += string.Format("select member_id from exchange_in where in_0 in ({0}) or in_1 in ({0}) or in_2 in ({0}) or in_3 in ({0}) or in_4 in ({0});", string.Join(", ", parameters));
-
-            SqlDataReader reader = cmd.ExecuteReader();
-
-            while (reader.Read())
-            {
-                listOpidIn.Add((int)reader["member_id"]);
-            }
-            
-
-            reader.Close();
-            Sql.con.Close();
         }
 
         public static void GetResuldId()

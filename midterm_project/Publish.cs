@@ -181,13 +181,21 @@ namespace midterm_project
 
         private void btn借出_Click(object sender, EventArgs e)
         {
+            Size = new Size(1053, 620);
+            CenterToScreen();
+
+            btn借出.BackColor = Color.Gray;
+            btn借出.ForeColor = Color.White;
+            btn借入.BackColor = Color.WhiteSmoke;
+            btn借入.ForeColor = Color.Black;
+
             panelBtn.Visible = true;
             listBox借出.Visible = true;
             listBox借入.Visible = false;
 
             exchangeOut.Clear();
             listBox借出.Items.Clear();
-            pictureBox1.Image = null;
+            pictureBox1.Image = null;            
 
             Sql.Connect();
             string sql = "select * from exchange_out where member_id = @id";
@@ -230,10 +238,23 @@ namespace midterm_project
 
             reader.Close();
             Sql.con.Close();
+
+            if (listBox借出.Items.Count > 0)
+            {
+                listBox借出.SelectedIndex = 0;
+            }
         }
 
         private void btn借入_Click(object sender, EventArgs e)
         {
+            Size = new Size(1053, 620);
+            CenterToScreen();
+
+            btn借入.BackColor = Color.Gray;
+            btn借入.ForeColor = Color.White;
+            btn借出.BackColor = Color.WhiteSmoke;
+            btn借出.ForeColor = Color.Black;
+
             panelBtn.Visible = true;
             listBox借入.Visible = true;
             listBox借出.Visible = false;
@@ -284,6 +305,11 @@ namespace midterm_project
 
             reader.Close();
             Sql.con.Close();
+
+            if (listBox借入.Items.Count > 0)
+            {
+                listBox借入.SelectedIndex = 0;
+            }            
         }
 
         private void btn清除全部_Click(object sender, EventArgs e)
@@ -317,12 +343,15 @@ namespace midterm_project
             bool face = chk面交.Checked;
             bool mail = chk郵寄.Checked;
 
+            exchangeIn.Sort();
+            exchangeOut.Sort();
+
             if (listBox借入.Visible)
             {
                 for (int i = 0; i < 5;)
                 {
                     if (i < exchangeIn.Count)
-                    {
+                    {                        
                         sql = string.Format("update exchange_in set {0} = {1} where member_id = {2}", "in_" + i, exchangeIn[i], Account.Id);
                         cmd = new SqlCommand(sql, Sql.con);
 
