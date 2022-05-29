@@ -22,6 +22,21 @@ namespace midterm_project
 
         Dictionary<int, string> game = new Dictionary<int, string>();
 
+        void SetBtnColor(Button btn)
+        {
+            btn會員資料變更.BackColor = SystemColors.Control;
+            btn會員資料變更.ForeColor = Color.Black;
+            btn交易邀請管理.BackColor = SystemColors.Control;
+            btn交易邀請管理.ForeColor = Color.Black;
+            btn交換中.BackColor = SystemColors.Control;
+            btn交換中.ForeColor = Color.Black;
+            btn歷史交易紀錄.BackColor = SystemColors.Control;
+            btn歷史交易紀錄.ForeColor = Color.Black;
+
+            btn.BackColor = Color.Gray;
+            btn.ForeColor = Color.White;
+        }
+
         void LoadPic()
         {
             Sql.Connect();
@@ -123,6 +138,8 @@ namespace midterm_project
             panel歷史交易紀錄.Visible = false;
             panel交易邀請管理.Visible = false;
             panel交換中的訂單.Visible = false;
+                        
+            SetBtnColor((Button)sender);
 
             Sql.Connect();
             string sql = "select location, phone, nickname from member where id = @id";
@@ -137,6 +154,7 @@ namespace midterm_project
                 txtNickname.Text = reader[2].ToString();
             }
 
+            txt會員ID.Text = Account.Id + "";
 
             reader.Close();
             Sql.con.Close();
@@ -157,6 +175,8 @@ namespace midterm_project
             panel交易邀請管理.Visible = true;
             panel交換中的訂單.Visible = false;
 
+            SetBtnColor((Button)sender);
+
             Sql.Connect();
             string sql = "select order_id from [order] where id_received = @id and status = 0";
             SqlCommand cmd = new SqlCommand(sql, Sql.con);
@@ -169,6 +189,9 @@ namespace midterm_project
                 listBox收.Items.Add(reader[0]);
                 listBox收.SelectedIndex = 0;
             }
+
+            reader.Close();
+            Sql.con.Close();
         }
 
         private void btn歷史交易紀錄_Click(object sender, EventArgs e)
@@ -177,6 +200,8 @@ namespace midterm_project
             panel歷史交易紀錄.Visible = true;
             panel交易邀請管理.Visible = false;
             panel交換中的訂單.Visible = false;
+
+            SetBtnColor((Button)sender);
 
             cb類型.SelectedIndex = 0;
             dtp開始.Value = DateTime.Now.AddMonths(-1);
@@ -381,6 +406,32 @@ namespace midterm_project
             panel歷史交易紀錄.Visible = false;
             panel交易邀請管理.Visible = false;
             panel交換中的訂單.Visible = true;
+
+            listBox交換中編號.Items.Clear();
+            listView交換中對方.Items.Clear();
+            listView交換中自己.Items.Clear();
+            btn交換中對方資訊.Enabled = false;
+            btn交換中查看備註.Enabled = false;
+            btn交換中取消交換.Enabled = false;
+            btn交換中交換完成.Enabled = false;
+
+            SetBtnColor((Button)sender);
+
+            Sql.Connect();
+            string sql = "select order_id from [order] where (id_received = @id or id_invite = @id) and status in (1, 6, 7)";
+            SqlCommand cmd = new SqlCommand(sql, Sql.con);
+            cmd.Parameters.AddWithValue("@id", Account.Id);
+
+            SqlDataReader reader = cmd.ExecuteReader();
+
+            while (reader.Read())
+            {
+                listBox交換中編號.Items.Add(reader[0]);
+                listBox交換中編號.SelectedIndex = 0;
+            }
+
+            reader.Close();
+            Sql.con.Close();
         }
 
         private void btn接受邀請_Click(object sender, EventArgs e)
@@ -394,6 +445,8 @@ namespace midterm_project
             cmd = new SqlCommand("", Sql.con);
             cmd.Parameters.AddWithValue("@status", GlobalVar.orderStatus.取消申請);
             cmd.Parameters.AddWithValue("@opid", opid);
+            cmd.Parameters.AddWithValue("@date", DateTime.Now);
+            cmd.Parameters.AddWithValue("@originStat", GlobalVar.orderStatus.等待接受);
 
             for (int i = 0; i < opGameID.Count; i++)
             {
@@ -401,7 +454,7 @@ namespace midterm_project
                 cmd.Parameters.AddWithValue(parameters[i], opGameID[i]);
             }
 
-            cmd.CommandText = string.Format("update [order] set status = @status where id_invite = @opid and (invite_0 in ({0}) or invite_1 in ({0}) or invite_2 in ({0}) or invite_3 in ({0}) or invite_4 in ({0}))", string.Join(", ", parameters));
+            cmd.CommandText = string.Format("update [order] set status = @status, [date] = @date where id_invite = @opid and status = @originStat and (invite_0 in ({0}) or invite_1 in ({0}) or invite_2 in ({0}) or invite_3 in ({0}) or invite_4 in ({0}))", string.Join(", ", parameters));
             cmd.ExecuteNonQuery();
             cmd.Parameters.Clear();
 
@@ -409,7 +462,9 @@ namespace midterm_project
             parameters = new string[opGameID.Count];
             cmd = new SqlCommand("", Sql.con);
             cmd.Parameters.AddWithValue("@status", GlobalVar.orderStatus.取消申請);
-            cmd.Parameters.AddWithValue("@opid", opid);
+            cmd.Parameters.AddWithValue("@opid", opid); 
+            cmd.Parameters.AddWithValue("@date", DateTime.Now);
+            cmd.Parameters.AddWithValue("@originStat", GlobalVar.orderStatus.等待接受);
 
             for (int i = 0; i < opGameID.Count; i++)
             {
@@ -417,7 +472,7 @@ namespace midterm_project
                 cmd.Parameters.AddWithValue(parameters[i], opGameID[i]);
             }
 
-            cmd.CommandText = string.Format("update [order] set status = @status where id_received = @opid and (received_0 in ({0}) or received_1 in ({0}) or received_2 in ({0}) or received_3 in ({0}) or received_4 in ({0}))", string.Join(", ", parameters));
+            cmd.CommandText = string.Format("update [order] set status = @status, [date] = @date where id_received = @opid and status = @originStat and (received_0 in ({0}) or received_1 in ({0}) or received_2 in ({0}) or received_3 in ({0}) or received_4 in ({0}))", string.Join(", ", parameters));
             cmd.ExecuteNonQuery();
             cmd.Parameters.Clear();
 
@@ -426,6 +481,8 @@ namespace midterm_project
             cmd = new SqlCommand("", Sql.con);
             cmd.Parameters.AddWithValue("@status", GlobalVar.orderStatus.取消申請);
             cmd.Parameters.AddWithValue("@id", Account.Id);
+            cmd.Parameters.AddWithValue("@date", DateTime.Now);
+            cmd.Parameters.AddWithValue("@originStat", GlobalVar.orderStatus.等待接受);
 
             for (int i = 0; i < selfGameID.Count; i++)
             {
@@ -433,7 +490,7 @@ namespace midterm_project
                 cmd.Parameters.AddWithValue(parameters[i], selfGameID[i]);
             }
 
-            cmd.CommandText = string.Format("update [order] set status = @status where id_invite = @id and (invite_0 in ({0}) or invite_1 in ({0}) or invite_2 in ({0}) or invite_3 in ({0}) or invite_4 in ({0}))", string.Join(", ", parameters));
+            cmd.CommandText = string.Format("update [order] set status = @status, [date] = @date where id_invite = @id and status = @originStat and (invite_0 in ({0}) or invite_1 in ({0}) or invite_2 in ({0}) or invite_3 in ({0}) or invite_4 in ({0}))", string.Join(", ", parameters));
             cmd.ExecuteNonQuery();
             cmd.Parameters.Clear();
 
@@ -442,6 +499,8 @@ namespace midterm_project
             cmd = new SqlCommand("", Sql.con);
             cmd.Parameters.AddWithValue("@status", GlobalVar.orderStatus.取消申請);
             cmd.Parameters.AddWithValue("@id", Account.Id);
+            cmd.Parameters.AddWithValue("@date", DateTime.Now);
+            cmd.Parameters.AddWithValue("@originStat", GlobalVar.orderStatus.等待接受);
 
             for (int i = 0; i < selfGameID.Count; i++)
             {
@@ -449,7 +508,7 @@ namespace midterm_project
                 cmd.Parameters.AddWithValue(parameters[i], selfGameID[i]);
             }
 
-            cmd.CommandText = string.Format("update [order] set status = @status where id_received = @id and (received_0 in ({0}) or received_1 in ({0}) or received_2 in ({0}) or received_3 in ({0}) or received_4 in ({0}))", string.Join(", ", parameters));
+            cmd.CommandText = string.Format("update [order] set status = @status, [date] = @date where id_received = @id and status = @originStat and (received_0 in ({0}) or received_1 in ({0}) or received_2 in ({0}) or received_3 in ({0}) or received_4 in ({0}))", string.Join(", ", parameters));
             cmd.ExecuteNonQuery();
             cmd.Parameters.Clear();
 
@@ -618,6 +677,7 @@ namespace midterm_project
             MessageBox.Show("已接受邀請，請至「交換中的訂單查看」");
             listView對方.Clear();
             listView自己.Clear();
+            listBox收.Items.Clear();
 
             btn查看備註.Enabled = false;
             btn對方資訊.Enabled = false;
@@ -720,7 +780,16 @@ namespace midterm_project
 
         private void btn拒絕_Click(object sender, EventArgs e)
         {
+            Sql.Connect();
+            SqlCommand cmd = new SqlCommand("", Sql.con);
+            cmd.CommandText = "update [order] set status = @status, date = @date where order_id = @orderID";
+            cmd.Parameters.AddWithValue("@status", GlobalVar.orderStatus.拒絕);
+            cmd.Parameters.AddWithValue("@date", DateTime.Now);
+            cmd.Parameters.AddWithValue("@orderID", orderID);
+            cmd.ExecuteNonQuery();
+            Sql.con.Close();
 
+            MessageBox.Show("已拒絕此邀請");
         }
 
         private void btn對方資訊_Click(object sender, EventArgs e)
@@ -753,6 +822,310 @@ namespace midterm_project
             MessageBox.Show($"暱稱: {nickname}\n居住地區: {location}\n交易方式: {tradeVia}");
 
             reader.Close();
+            Sql.con.Close();
+        }
+
+        bool isInvite;
+        private void listBox交換中編號_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (listBox交換中編號.SelectedIndex >= 0)
+            {
+                listView交換中自己.Items.Clear();
+                listView交換中對方.Items.Clear();
+                btn交換中對方資訊.Enabled = true;
+                btn交換中取消交換.Enabled = true;
+                btn交換中交換完成.Enabled = true;
+
+                int orderID = (int)listBox交換中編號.SelectedItem;
+
+                Sql.Connect();
+                SqlCommand cmd = new SqlCommand("", Sql.con);
+                cmd.CommandText = "select note from [order] where order_id = @orderID";
+                cmd.Parameters.AddWithValue("@orderID", orderID);
+                SqlDataReader reader = cmd.ExecuteReader();
+                reader.Read();
+
+                if (!reader["note"].ToString().Contains("(無)"))
+                {
+                    btn交換中查看備註.Enabled = true;
+                }
+                else
+                {
+                    btn交換中查看備註.Enabled = false;
+                }
+
+                reader.Close();
+
+                cmd = new SqlCommand("", Sql.con);
+                cmd.CommandText = "select invite_0, invite_1, invite_2, invite_3, invite_4, received_0, received_1, received_2, received_3, received_4, id_invite, id_received from [order] where order_id = @order_id";
+                cmd.Parameters.AddWithValue("@order_id", orderID);
+                reader = cmd.ExecuteReader();
+                reader.Read();
+
+                if ((int)reader["id_invite"] == Account.Id)
+                {
+                    isInvite = true;
+
+                    int i = 0;
+                    while (reader[i] != DBNull.Value)
+                    {
+                        ListViewItem item = new ListViewItem();
+                        item.Text = game[(int)reader[i]];
+                        item.ImageIndex = (int)reader[i];
+                        listView交換中自己.Items.Add(item);
+
+                        i++;
+                    }
+
+                    i = 5;
+                    while (reader[i] != DBNull.Value && i < 10)
+                    {
+                        ListViewItem item = new ListViewItem();
+                        item.Text = game[(int)reader[i]];
+                        item.ImageIndex = (int)reader[i];
+                        listView交換中對方.Items.Add(item);
+
+                        i++;
+                    }
+                }
+                else
+                {
+                    isInvite = false;
+
+                    int i = 0;
+                    while (reader[i] != DBNull.Value)
+                    {
+                        ListViewItem item = new ListViewItem();
+                        item.Text = game[(int)reader[i]];
+                        item.ImageIndex = (int)reader[i];
+                        listView交換中對方.Items.Add(item);
+
+                        i++;
+                    }
+
+                    i = 5;
+                    while (reader[i] != DBNull.Value && i < 10)
+                    {
+                        ListViewItem item = new ListViewItem();
+                        item.Text = game[(int)reader[i]];
+                        item.ImageIndex = (int)reader[i];
+                        listView交換中自己.Items.Add(item);
+
+                        i++;
+                    }
+                }
+                reader.Close();
+
+                cmd = new SqlCommand("", Sql.con);
+                cmd.CommandText = "select status from [order] where order_id = @orderID";
+                cmd.Parameters.AddWithValue("@orderID", orderID);
+
+                GlobalVar.orderStatus status = (GlobalVar.orderStatus)cmd.ExecuteScalar();   
+                
+                if (status == GlobalVar.orderStatus.確認完成中)
+                {
+                    cmd = new SqlCommand("", Sql.con);
+                    cmd.CommandText = "select sendfinish from [order] where order_id = @orderID";
+                    cmd.Parameters.AddWithValue("@orderID", orderID);
+
+                    bool isMeSentFinish = (int)cmd.ExecuteScalar() == Account.Id;
+
+                    if (isMeSentFinish == false)
+                    {
+                        DialogResult result;
+                        result = MessageBox.Show("對方已提出完成交易請求，確認完成嗎?", "確認完成", MessageBoxButtons.YesNo);
+                        if (result == DialogResult.Yes)
+                        {
+                            cmd = new SqlCommand("", Sql.con);
+                            cmd.CommandText = "update [order] set status = 3, date = @date where order_id = @orderID";
+                            cmd.Parameters.AddWithValue("@orderID", orderID);
+                            cmd.Parameters.AddWithValue("@date", DateTime.Now);
+                            cmd.ExecuteNonQuery();
+
+                            cmd = new SqlCommand("", Sql.con);
+                            cmd.CommandText = "update member set success += 1 where id = (select id_invite from [order] where order_id = @orderID) or id = (select id_received from [order] where order_id = @orderID)";
+                            cmd.Parameters.AddWithValue("@orderID", orderID);
+                            cmd.ExecuteNonQuery();
+
+                            listView交換中自己.Items.Clear();
+                            listView交換中對方.Items.Clear();
+                            listBox交換中編號.Items.Remove(listBox交換中編號.SelectedItem);
+                            btn交換中對方資訊.Enabled = false;
+                            btn交換中取消交換.Enabled = false;
+                            btn交換中交換完成.Enabled = false;
+                            btn交換中查看備註.Enabled = false;
+                        }                    
+                    }
+                    else
+                    {
+                        cmd = new SqlCommand("", Sql.con);
+                        cmd.CommandText = "update [order] set status = 1 where order_id = @orderID";
+                        cmd.Parameters.AddWithValue("@orderID", orderID);
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+                else if(status == GlobalVar.orderStatus.確認取消中)
+                {
+                    cmd = new SqlCommand("", Sql.con);
+                    cmd.CommandText = "select sendcancel from [order] where order_id = @orderID";
+                    cmd.Parameters.AddWithValue("@orderID", orderID);
+
+                    bool isMeSentCancel = (int)cmd.ExecuteScalar() == Account.Id;
+
+                    if (isMeSentCancel == false)
+                    {
+                        DialogResult result;
+                        result = MessageBox.Show("對方已提出取消交易請求，確認取消嗎?", "確認取消", MessageBoxButtons.YesNo);
+                        if (result == DialogResult.Yes)
+                        {
+                            cmd = new SqlCommand("", Sql.con);
+                            cmd.CommandText = "update [order] set status = 4, date = @date where order_id = @orderID";
+                            cmd.Parameters.AddWithValue("@orderID", orderID);
+                            cmd.Parameters.AddWithValue("@date", DateTime.Now);
+                            cmd.ExecuteNonQuery();
+
+                            listView交換中自己.Items.Clear();
+                            listView交換中對方.Items.Clear();
+                            listBox交換中編號.Items.Remove(listBox交換中編號.SelectedItem);
+                            btn交換中對方資訊.Enabled = false;
+                            btn交換中取消交換.Enabled = false;
+                            btn交換中交換完成.Enabled = false;
+                            btn交換中查看備註.Enabled = false;
+                        }
+                        else
+                        {
+                            cmd = new SqlCommand("", Sql.con);
+                            cmd.CommandText = "update [order] set status = 1 where order_id = @orderID";
+                            cmd.Parameters.AddWithValue("@orderID", orderID);
+                            cmd.ExecuteNonQuery();
+                        }
+                    }                    
+                }
+
+                Sql.con.Close();
+            }
+        }
+
+        private void btn交換中對方資訊_Click(object sender, EventArgs e)
+        {
+            if (isInvite == true)
+            {
+                int orderID = (int)listBox交換中編號.SelectedItem;
+                Sql.Connect();
+                SqlCommand cmd = new SqlCommand("", Sql.con);
+                cmd.CommandText = "select id_received, Member.email, Member.location, Member.phone, Member.nickname, Member.face, Member.mail from [order] inner join member on id_received = member.id where order_id = @orderID";
+                cmd.Parameters.AddWithValue("@orderID", orderID);
+
+                SqlDataReader reader = cmd.ExecuteReader();
+                reader.Read();
+
+                int id = (int)reader["id_received"];
+                string email = (string)reader["email"];
+                string location = (string)reader["location"];
+                string phone = (string)reader["phone"];
+                string nickname = (string)reader["nickname"];
+                string tradeVia;
+
+                if ((bool)reader["face"] == true && (bool)reader["mail"] == true)
+                {
+                    tradeVia = "不限郵寄或面交";
+                }
+                else if ((bool)reader["face"] == false && (bool)reader["mail"] == true)
+                {
+                    tradeVia = "限郵寄";
+                }
+                else
+                {
+                    tradeVia = "限面交";
+                }
+
+                MessageBox.Show($"會員ID: {id}\n暱稱: {nickname}\nEmail: {email}\n居住地區: {location}\n電話: {phone}\n交易方式: {tradeVia}");
+
+                reader.Close();
+                Sql.con.Close();
+            }
+            else
+            {
+                int orderID = (int)listBox交換中編號.SelectedItem;
+                Sql.Connect();
+                SqlCommand cmd = new SqlCommand("", Sql.con);
+                cmd.CommandText = "select id_invite, Member.email, Member.location, Member.phone, Member.nickname, Member.face, Member.mail from [order] inner join member on id_invite = member.id where order_id = @orderID";
+                cmd.Parameters.AddWithValue("@orderID", orderID);
+
+                SqlDataReader reader = cmd.ExecuteReader();
+                reader.Read();
+
+                int id = (int)reader["id_invite"];
+                string email = (string)reader["email"];
+                string location = (string)reader["location"];
+                string phone = (string)reader["phone"];
+                string nickname = (string)reader["nickname"];
+                string tradeVia;
+
+                if ((bool)reader["face"] == true && (bool)reader["mail"] == true)
+                {
+                    tradeVia = "不限郵寄或面交";
+                }
+                else if ((bool)reader["face"] == false && (bool)reader["mail"] == true)
+                {
+                    tradeVia = "限郵寄";
+                }
+                else
+                {
+                    tradeVia = "限面交";
+                }
+
+                MessageBox.Show($"會員ID: {id}\n暱稱: {nickname}\nEmail: {email}\n居住地區: {location}\n電話: {phone}\n交易方式: {tradeVia}");
+
+                reader.Close();
+                Sql.con.Close();
+            }            
+        }
+
+        private void btn交換中查看備註_Click(object sender, EventArgs e)
+        {
+            int orderID = (int)listBox交換中編號.SelectedItem;
+            Sql.Connect();
+            SqlCommand cmd = new SqlCommand("", Sql.con);
+            cmd.CommandText = "select note from [order] where order_id = @orderID";
+            cmd.Parameters.AddWithValue("@orderID", orderID);
+
+            SqlDataReader reader = cmd.ExecuteReader();
+            reader.Read();
+            string note = (string)reader["note"];
+
+            MessageBox.Show(note);
+            reader.Close();
+            Sql.con.Close();
+        }
+
+        private void btn交換中取消交換_Click(object sender, EventArgs e)
+        {
+            int orderID = (int)listBox交換中編號.SelectedItem;
+            Sql.Connect();
+
+            SqlCommand cmd = new SqlCommand("", Sql.con);
+            cmd.CommandText = "update [order] set status = 7, sendcancel = @id where order_id = @orderID";
+            cmd.Parameters.AddWithValue("@orderID", orderID);
+            cmd.Parameters.AddWithValue("@id", Account.Id);
+            cmd.ExecuteNonQuery();
+
+            MessageBox.Show("已向對方申請交換取消，請等待對方確認");
+            Sql.con.Close();
+        }
+
+        private void btn交換中交換完成_Click(object sender, EventArgs e)
+        {
+            int orderID = (int)listBox交換中編號.SelectedItem;
+            Sql.Connect();
+
+            SqlCommand cmd = new SqlCommand("", Sql.con);
+            cmd.CommandText = "update [order] set status = 6, sendfinish = @id where order_id = @orderID";
+            cmd.Parameters.AddWithValue("@orderID", orderID);
+            cmd.Parameters.AddWithValue("@id", Account.Id);
+            cmd.ExecuteNonQuery();
+
+            MessageBox.Show("已向對方申請交換完成，請等待對方確認");
             Sql.con.Close();
         }
     }

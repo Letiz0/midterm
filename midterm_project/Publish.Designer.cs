@@ -277,7 +277,6 @@ namespace midterm_project
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(6);
             this.Name = "Publish";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Publish";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Publish_FormClosing);
             this.Load += new System.EventHandler(this.Publish_Load);

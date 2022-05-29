@@ -39,11 +39,16 @@ namespace midterm_project
 
             if (count != 0)
             {
-                sql = "select id from member where email = @email";
+                sql = "select id, nickname from member where email = @email";
                 cmd = new SqlCommand(sql, Sql.con);
                 cmd.Parameters.AddWithValue("@email", txtEmail.Text);
+                SqlDataReader reader = cmd.ExecuteReader();
 
-                int id = (int)cmd.ExecuteScalar();
+                reader.Read();
+                int id = (int)reader["id"];
+                string nickname = (string)reader["nickname"];
+
+                reader.Close();
 
                 Hide();
                 GlobalVar.formMain = new FormMain();
@@ -52,6 +57,7 @@ namespace midterm_project
                 Account.Email = txtEmail.Text;
                 Account.Password = txtPW.Text;
                 Account.Id = id;
+                Account.Nickname = nickname;
             }
             else
             {

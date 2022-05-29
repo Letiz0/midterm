@@ -353,7 +353,7 @@ namespace midterm_project
         string note = "(無)";
         private void btn備註_Click(object sender, EventArgs e)
         {
-            note = Interaction.InputBox("請輸入備註(限30字)", "備註", note, -1, -1);
+            note = $"{Account.Nickname}(會員ID: {Account.Id})的備註 : " + Interaction.InputBox("請輸入備註(限30字)", "備註", note, -1, -1);
             if (note.Length >= 30)
             {
                 MessageBox.Show("最多輸入30字");

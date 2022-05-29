@@ -36,6 +36,8 @@ namespace midterm_project
             this.btn歷史交易紀錄 = new System.Windows.Forms.Button();
             this.btn交易邀請管理 = new System.Windows.Forms.Button();
             this.panel資料變更 = new System.Windows.Forms.Panel();
+            this.txt會員ID = new System.Windows.Forms.TextBox();
+            this.label20 = new System.Windows.Forms.Label();
             this.txt舊密碼 = new System.Windows.Forms.TextBox();
             this.txt確認新密碼 = new System.Windows.Forms.TextBox();
             this.btn儲存修改 = new System.Windows.Forms.Button();
@@ -71,6 +73,7 @@ namespace midterm_project
             this.label7 = new System.Windows.Forms.Label();
             this.panel交易邀請管理 = new System.Windows.Forms.Panel();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.btn對方資訊 = new System.Windows.Forms.Button();
             this.btn拒絕 = new System.Windows.Forms.Button();
             this.btn接受邀請 = new System.Windows.Forms.Button();
             this.btn查看備註 = new System.Windows.Forms.Button();
@@ -83,12 +86,24 @@ namespace midterm_project
             this.listBox收 = new System.Windows.Forms.ListBox();
             this.btn交換中 = new System.Windows.Forms.Button();
             this.panel交換中的訂單 = new System.Windows.Forms.Panel();
-            this.btn對方資訊 = new System.Windows.Forms.Button();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.listBox交換中編號 = new System.Windows.Forms.ListBox();
+            this.label17 = new System.Windows.Forms.Label();
+            this.listView交換中對方 = new System.Windows.Forms.ListView();
+            this.listView交換中自己 = new System.Windows.Forms.ListView();
+            this.label18 = new System.Windows.Forms.Label();
+            this.label19 = new System.Windows.Forms.Label();
+            this.btn交換中交換完成 = new System.Windows.Forms.Button();
+            this.btn交換中取消交換 = new System.Windows.Forms.Button();
+            this.btn交換中對方資訊 = new System.Windows.Forms.Button();
+            this.btn交換中查看備註 = new System.Windows.Forms.Button();
             this.panel資料變更.SuspendLayout();
             this.panel歷史交易紀錄.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.panel交易邀請管理.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            this.panel交換中的訂單.SuspendLayout();
+            this.groupBox3.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnBack
@@ -137,6 +152,8 @@ namespace midterm_project
             // panel資料變更
             // 
             this.panel資料變更.BackColor = System.Drawing.Color.Transparent;
+            this.panel資料變更.Controls.Add(this.txt會員ID);
+            this.panel資料變更.Controls.Add(this.label20);
             this.panel資料變更.Controls.Add(this.txt舊密碼);
             this.panel資料變更.Controls.Add(this.txt確認新密碼);
             this.panel資料變更.Controls.Add(this.btn儲存修改);
@@ -158,9 +175,29 @@ namespace midterm_project
             this.panel資料變更.TabIndex = 16;
             this.panel資料變更.Visible = false;
             // 
+            // txt會員ID
+            // 
+            this.txt會員ID.Enabled = false;
+            this.txt會員ID.Location = new System.Drawing.Point(127, 10);
+            this.txt會員ID.Name = "txt會員ID";
+            this.txt會員ID.Size = new System.Drawing.Size(97, 33);
+            this.txt會員ID.TabIndex = 26;
+            this.txt會員ID.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label20.ForeColor = System.Drawing.Color.Black;
+            this.label20.Location = new System.Drawing.Point(43, 15);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(88, 24);
+            this.label20.TabIndex = 25;
+            this.label20.Text = "會員ID：";
+            // 
             // txt舊密碼
             // 
-            this.txt舊密碼.Location = new System.Drawing.Point(127, 239);
+            this.txt舊密碼.Location = new System.Drawing.Point(127, 278);
             this.txt舊密碼.Name = "txt舊密碼";
             this.txt舊密碼.PasswordChar = '*';
             this.txt舊密碼.Size = new System.Drawing.Size(205, 33);
@@ -169,7 +206,7 @@ namespace midterm_project
             // 
             // txt確認新密碼
             // 
-            this.txt確認新密碼.Location = new System.Drawing.Point(127, 393);
+            this.txt確認新密碼.Location = new System.Drawing.Point(126, 412);
             this.txt確認新密碼.Name = "txt確認新密碼";
             this.txt確認新密碼.PasswordChar = '*';
             this.txt確認新密碼.Size = new System.Drawing.Size(205, 33);
@@ -192,7 +229,7 @@ namespace midterm_project
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.label5.ForeColor = System.Drawing.Color.White;
-            this.label5.Location = new System.Drawing.Point(8, 396);
+            this.label5.Location = new System.Drawing.Point(7, 415);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(124, 24);
             this.label5.TabIndex = 21;
@@ -211,7 +248,7 @@ namespace midterm_project
             // 
             // txt新密碼
             // 
-            this.txt新密碼.Location = new System.Drawing.Point(127, 316);
+            this.txt新密碼.Location = new System.Drawing.Point(127, 345);
             this.txt新密碼.Name = "txt新密碼";
             this.txt新密碼.PasswordChar = '*';
             this.txt新密碼.Size = new System.Drawing.Size(205, 33);
@@ -223,7 +260,7 @@ namespace midterm_project
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.label6.ForeColor = System.Drawing.Color.White;
-            this.label6.Location = new System.Drawing.Point(45, 242);
+            this.label6.Location = new System.Drawing.Point(45, 281);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(86, 24);
             this.label6.TabIndex = 19;
@@ -231,7 +268,7 @@ namespace midterm_project
             // 
             // txtNickname
             // 
-            this.txtNickname.Location = new System.Drawing.Point(127, 87);
+            this.txtNickname.Location = new System.Drawing.Point(127, 144);
             this.txtNickname.Name = "txtNickname";
             this.txtNickname.Size = new System.Drawing.Size(205, 33);
             this.txtNickname.TabIndex = 5;
@@ -242,7 +279,7 @@ namespace midterm_project
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.label4.ForeColor = System.Drawing.Color.White;
-            this.label4.Location = new System.Drawing.Point(45, 319);
+            this.label4.Location = new System.Drawing.Point(45, 348);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(86, 24);
             this.label4.TabIndex = 23;
@@ -253,7 +290,7 @@ namespace midterm_project
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.label3.ForeColor = System.Drawing.Color.Black;
-            this.label3.Location = new System.Drawing.Point(65, 90);
+            this.label3.Location = new System.Drawing.Point(65, 147);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(67, 24);
             this.label3.TabIndex = 4;
@@ -261,7 +298,7 @@ namespace midterm_project
             // 
             // txtPhone
             // 
-            this.txtPhone.Location = new System.Drawing.Point(127, 164);
+            this.txtPhone.Location = new System.Drawing.Point(127, 211);
             this.txtPhone.Name = "txtPhone";
             this.txtPhone.Size = new System.Drawing.Size(205, 33);
             this.txtPhone.TabIndex = 3;
@@ -272,7 +309,7 @@ namespace midterm_project
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.label2.ForeColor = System.Drawing.Color.Black;
-            this.label2.Location = new System.Drawing.Point(65, 167);
+            this.label2.Location = new System.Drawing.Point(65, 214);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(67, 24);
             this.label2.TabIndex = 2;
@@ -280,7 +317,7 @@ namespace midterm_project
             // 
             // txtLocation
             // 
-            this.txtLocation.Location = new System.Drawing.Point(127, 10);
+            this.txtLocation.Location = new System.Drawing.Point(127, 77);
             this.txtLocation.Name = "txtLocation";
             this.txtLocation.Size = new System.Drawing.Size(205, 33);
             this.txtLocation.TabIndex = 1;
@@ -291,7 +328,7 @@ namespace midterm_project
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.label1.ForeColor = System.Drawing.Color.Black;
-            this.label1.Location = new System.Drawing.Point(27, 13);
+            this.label1.Location = new System.Drawing.Point(27, 80);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(105, 24);
             this.label1.TabIndex = 0;
@@ -547,6 +584,18 @@ namespace midterm_project
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "收到的邀請";
             // 
+            // btn對方資訊
+            // 
+            this.btn對方資訊.Enabled = false;
+            this.btn對方資訊.Font = new System.Drawing.Font("新宋体", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.btn對方資訊.Location = new System.Drawing.Point(232, 200);
+            this.btn對方資訊.Name = "btn對方資訊";
+            this.btn對方資訊.Size = new System.Drawing.Size(110, 41);
+            this.btn對方資訊.TabIndex = 16;
+            this.btn對方資訊.Text = "對方資訊";
+            this.btn對方資訊.UseVisualStyleBackColor = true;
+            this.btn對方資訊.Click += new System.EventHandler(this.btn對方資訊_Click);
+            // 
             // btn拒絕
             // 
             this.btn拒絕.Font = new System.Drawing.Font("新宋体", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
@@ -669,23 +718,145 @@ namespace midterm_project
             // panel交換中的訂單
             // 
             this.panel交換中的訂單.BackColor = System.Drawing.Color.Transparent;
+            this.panel交換中的訂單.Controls.Add(this.groupBox3);
             this.panel交換中的訂單.Location = new System.Drawing.Point(226, 12);
             this.panel交換中的訂單.Name = "panel交換中的訂單";
             this.panel交換中的訂單.Size = new System.Drawing.Size(641, 468);
             this.panel交換中的訂單.TabIndex = 2;
             this.panel交換中的訂單.Visible = false;
             // 
-            // btn對方資訊
+            // groupBox3
             // 
-            this.btn對方資訊.Enabled = false;
-            this.btn對方資訊.Font = new System.Drawing.Font("新宋体", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.btn對方資訊.Location = new System.Drawing.Point(232, 200);
-            this.btn對方資訊.Name = "btn對方資訊";
-            this.btn對方資訊.Size = new System.Drawing.Size(110, 41);
-            this.btn對方資訊.TabIndex = 16;
-            this.btn對方資訊.Text = "對方資訊";
-            this.btn對方資訊.UseVisualStyleBackColor = true;
-            this.btn對方資訊.Click += new System.EventHandler(this.btn對方資訊_Click);
+            this.groupBox3.Controls.Add(this.listBox交換中編號);
+            this.groupBox3.Controls.Add(this.label17);
+            this.groupBox3.Controls.Add(this.listView交換中對方);
+            this.groupBox3.Controls.Add(this.listView交換中自己);
+            this.groupBox3.Controls.Add(this.label18);
+            this.groupBox3.Controls.Add(this.label19);
+            this.groupBox3.Controls.Add(this.btn交換中交換完成);
+            this.groupBox3.Controls.Add(this.btn交換中取消交換);
+            this.groupBox3.Controls.Add(this.btn交換中對方資訊);
+            this.groupBox3.Controls.Add(this.btn交換中查看備註);
+            this.groupBox3.Font = new System.Drawing.Font("微軟正黑體", 15.75F, System.Drawing.FontStyle.Bold);
+            this.groupBox3.Location = new System.Drawing.Point(3, 11);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(635, 454);
+            this.groupBox3.TabIndex = 19;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "交換中";
+            // 
+            // listBox交換中編號
+            // 
+            this.listBox交換中編號.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.listBox交換中編號.FormattingEnabled = true;
+            this.listBox交換中編號.ItemHeight = 24;
+            this.listBox交換中編號.Location = new System.Drawing.Point(16, 95);
+            this.listBox交換中編號.Name = "listBox交換中編號";
+            this.listBox交換中編號.Size = new System.Drawing.Size(76, 172);
+            this.listBox交換中編號.TabIndex = 0;
+            this.listBox交換中編號.SelectedIndexChanged += new System.EventHandler(this.listBox交換中編號_SelectedIndexChanged);
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label17.Location = new System.Drawing.Point(13, 73);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(90, 21);
+            this.label17.TabIndex = 1;
+            this.label17.Text = "訂單編號：";
+            // 
+            // listView交換中對方
+            // 
+            this.listView交換中對方.Font = new System.Drawing.Font("微軟正黑體", 12F);
+            this.listView交換中對方.HideSelection = false;
+            this.listView交換中對方.LargeImageList = this.imageList1;
+            this.listView交換中對方.Location = new System.Drawing.Point(116, 53);
+            this.listView交換中對方.Name = "listView交換中對方";
+            this.listView交換中對方.Size = new System.Drawing.Size(501, 143);
+            this.listView交換中對方.TabIndex = 2;
+            this.listView交換中對方.UseCompatibleStateImageBehavior = false;
+            // 
+            // listView交換中自己
+            // 
+            this.listView交換中自己.Font = new System.Drawing.Font("微軟正黑體", 12F);
+            this.listView交換中自己.HideSelection = false;
+            this.listView交換中自己.LargeImageList = this.imageList1;
+            this.listView交換中自己.Location = new System.Drawing.Point(116, 299);
+            this.listView交換中自己.Name = "listView交換中自己";
+            this.listView交換中自己.Size = new System.Drawing.Size(501, 143);
+            this.listView交換中自己.TabIndex = 3;
+            this.listView交換中自己.UseCompatibleStateImageBehavior = false;
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label18.ForeColor = System.Drawing.Color.Red;
+            this.label18.Location = new System.Drawing.Point(115, 30);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(143, 24);
+            this.label18.TabIndex = 4;
+            this.label18.Text = "對方的交換內容";
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label19.ForeColor = System.Drawing.Color.Red;
+            this.label19.Location = new System.Drawing.Point(112, 276);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(143, 24);
+            this.label19.TabIndex = 5;
+            this.label19.Text = "自己的交換內容";
+            // 
+            // btn交換中交換完成
+            // 
+            this.btn交換中交換完成.Enabled = false;
+            this.btn交換中交換完成.Font = new System.Drawing.Font("新宋体", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.btn交換中交換完成.Location = new System.Drawing.Point(508, 252);
+            this.btn交換中交換完成.Name = "btn交換中交換完成";
+            this.btn交換中交換完成.Size = new System.Drawing.Size(110, 41);
+            this.btn交換中交換完成.TabIndex = 22;
+            this.btn交換中交換完成.Text = "交換完成";
+            this.btn交換中交換完成.UseVisualStyleBackColor = true;
+            this.btn交換中交換完成.Click += new System.EventHandler(this.btn交換中交換完成_Click);
+            // 
+            // btn交換中取消交換
+            // 
+            this.btn交換中取消交換.Enabled = false;
+            this.btn交換中取消交換.Font = new System.Drawing.Font("新宋体", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.btn交換中取消交換.Location = new System.Drawing.Point(392, 252);
+            this.btn交換中取消交換.Name = "btn交換中取消交換";
+            this.btn交換中取消交換.Size = new System.Drawing.Size(110, 41);
+            this.btn交換中取消交換.TabIndex = 21;
+            this.btn交換中取消交換.Text = "取消交換";
+            this.btn交換中取消交換.UseVisualStyleBackColor = true;
+            this.btn交換中取消交換.Click += new System.EventHandler(this.btn交換中取消交換_Click);
+            // 
+            // btn交換中對方資訊
+            // 
+            this.btn交換中對方資訊.Enabled = false;
+            this.btn交換中對方資訊.Font = new System.Drawing.Font("新宋体", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.btn交換中對方資訊.Location = new System.Drawing.Point(230, 202);
+            this.btn交換中對方資訊.Name = "btn交換中對方資訊";
+            this.btn交換中對方資訊.Size = new System.Drawing.Size(110, 41);
+            this.btn交換中對方資訊.TabIndex = 20;
+            this.btn交換中對方資訊.Text = "對方資訊";
+            this.btn交換中對方資訊.UseVisualStyleBackColor = true;
+            this.btn交換中對方資訊.Click += new System.EventHandler(this.btn交換中對方資訊_Click);
+            // 
+            // btn交換中查看備註
+            // 
+            this.btn交換中查看備註.Enabled = false;
+            this.btn交換中查看備註.Font = new System.Drawing.Font("新宋体", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.btn交換中查看備註.Location = new System.Drawing.Point(114, 202);
+            this.btn交換中查看備註.Name = "btn交換中查看備註";
+            this.btn交換中查看備註.Size = new System.Drawing.Size(110, 41);
+            this.btn交換中查看備註.TabIndex = 19;
+            this.btn交換中查看備註.Text = "查看備註";
+            this.btn交換中查看備註.UseVisualStyleBackColor = true;
+            this.btn交換中查看備註.Click += new System.EventHandler(this.btn交換中查看備註_Click);
             // 
             // Member
             // 
@@ -693,18 +864,18 @@ namespace midterm_project
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.ClientSize = new System.Drawing.Size(880, 493);
-            this.Controls.Add(this.panel交易邀請管理);
             this.Controls.Add(this.panel交換中的訂單);
+            this.Controls.Add(this.panel交易邀請管理);
             this.Controls.Add(this.btn交換中);
             this.Controls.Add(this.btn交易邀請管理);
             this.Controls.Add(this.btn歷史交易紀錄);
             this.Controls.Add(this.btn會員資料變更);
             this.Controls.Add(this.btnBack);
-            this.Controls.Add(this.panel資料變更);
             this.Controls.Add(this.panel歷史交易紀錄);
+            this.Controls.Add(this.panel資料變更);
             this.DoubleBuffered = true;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Member";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Member";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Member_FormClosing);
             this.Load += new System.EventHandler(this.Member_Load);
@@ -717,6 +888,9 @@ namespace midterm_project
             this.panel交易邀請管理.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            this.panel交換中的訂單.ResumeLayout(false);
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -776,5 +950,18 @@ namespace midterm_project
         private System.Windows.Forms.Button btn接受邀請;
         private System.Windows.Forms.Button btn拒絕;
         private System.Windows.Forms.Button btn對方資訊;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.ListBox listBox交換中編號;
+        private System.Windows.Forms.ListView listView交換中自己;
+        private System.Windows.Forms.ListView listView交換中對方;
+        private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.Button btn交換中查看備註;
+        private System.Windows.Forms.Button btn交換中對方資訊;
+        private System.Windows.Forms.Button btn交換中取消交換;
+        private System.Windows.Forms.Button btn交換中交換完成;
+        private System.Windows.Forms.TextBox txt會員ID;
+        private System.Windows.Forms.Label label20;
+        private System.Windows.Forms.GroupBox groupBox3;
     }
 }
